@@ -1,0 +1,35 @@
+CH = {}
+lowestPoint = p[0]
+lowestY = p[0].y
+for i=1 to n-1:
+	if p[i].y < lowestY:
+		lowestY = p[i].y
+		lowestPoint = p[i]
+
+CH.append( lowestPoint )
+lowestPoint.visited = True
+
+v = <1, 0>
+
+done = False
+p0 = lowestPoint
+
+while !done:
+	minAngle = pi
+
+	for i=1 to n-1:
+		w = p[i].subtract( p0 )
+		theta = getAngle( w, v )
+		if theta < minAngle:
+			minAngle = theta
+			nextPoint = p[i]
+
+	if nextPoint.visited = False
+
+		CH.append( nextPoint )
+		nextPoint.visited = True
+		v = nextPoint.subtract(p0)
+		p0 = nextPoint
+
+	else:
+		done = True

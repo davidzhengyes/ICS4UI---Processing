@@ -1,0 +1,2 @@
+Welcome to Block Solver! 
+To place a block, select one of the four coloured buttons on the selection window, and click on where you would like the top left block to go in the puzzle window. To select a preset, click one of the preset buttons on the selection window. To solve a puzzle, create it using the previous features, and press the solve button. To undo a block placement, press the remove last button. To clear the board and return it to its initial state, press the reset board button.
