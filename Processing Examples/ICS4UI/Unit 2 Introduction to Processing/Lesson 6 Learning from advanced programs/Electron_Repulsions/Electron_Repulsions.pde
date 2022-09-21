@@ -1,17 +1,17 @@
 //PARAMETERS. TRY CHANGING THESE.
-int n = 25;                    //Number of electrons (Under 2000 recommended)
-float electronCharge = 20;     //How strongly the electrons repel (The q1 in Couloumb's Law, F = -k q1 q2/r^2)
+int n = 200;                    //Number of electrons (Under 2000 recommended)
+float electronCharge = 5;     //How strongly the electrons repel (The q1 in Couloumb's Law, F = -k q1 q2/r^2)
                               //When n is big, make the charge smaller. When n is small, make the charge bigger
                               
-float wallCharge = 80;         //How strongly walls repel the electrons
+float wallCharge = 200;         //How strongly walls repel the electrons
 
 float k = 2;                   //The k in Couloumb's Law
 float frictionDecay = 0.98;    //1.0 = no friction.  Make this smaller when n is big (over 500) to prevent an initial explosion
 float electronDiameter = 15;
 float electronMass = 1;          //Inertia of electrons
 String boundaryShape = "ring";  //"square" or "ring"
-String initialSetup = "random";    //"random" or "grid"
-boolean showGridLines = false;    //Recommended only when n < 150 or so
+String initialSetup = "grid";    //"random" or "grid"
+boolean showGridLines = true;    //Recommended only when n < 150 or so
 float pad = 50;
 boolean slowMo = false;
 
