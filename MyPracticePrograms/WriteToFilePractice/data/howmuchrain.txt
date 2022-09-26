@@ -1,0 +1,4 @@
+Waterloo: 23,0,24,36,13,25
+Kitchener: 11,13,13,16,14
+Oakville: 0,0,0
+Toronto: 1,200

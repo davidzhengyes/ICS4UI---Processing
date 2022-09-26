@@ -1,0 +1,4 @@
+Waterloo had an average of 20.166666 mm of rain recently
+Kitchener had an average of 13.4 mm of rain recently
+Oakville had an average of 0.0 mm of rain recently
+Toronto had an average of 100.5 mm of rain recently
