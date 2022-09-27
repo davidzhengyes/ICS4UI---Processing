@@ -2,10 +2,10 @@
 
 boolean showSin = true;
 boolean showCos = true;
-boolean showTan = true;
-boolean showSec = true;
-boolean showCot = false;
-boolean showCsc = false;
+boolean showTan = false;
+boolean showSec = false;
+boolean showCot = true;
+boolean showCsc = true;
 
 color sinCol = color(255, 0, 0);
 color cosCol = color(0, 255, 0);
