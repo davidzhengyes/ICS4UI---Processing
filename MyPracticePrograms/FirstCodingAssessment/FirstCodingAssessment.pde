@@ -18,7 +18,7 @@ void setup() {
    if (numAndDen[1]!=1){
      radAngleWithUnicode += "/" + numAndDen[1];
    }
-   fill(255);
+  
    String message = (radAngleWithUnicode +  " radians = "+ degrees+ "\u00b0");
    messages[i]=message;
    radianMeasure[i]=2*PI-float(numAndDen[0])/numAndDen[1]*PI;
@@ -27,9 +27,8 @@ void setup() {
    textFont(createFont("Times New Roman",60));
    
    
-   fill(0,255,0);
    circle(400,105+115*i,61);
-   fill(0);
+ 
    
   }
  
