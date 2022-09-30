@@ -1,3 +1,5 @@
+String [] messages = new String[5];
+float [] radianMeasure = new float[5];
 void setup() {
  String[] radAngles = loadStrings("radianMeasures.txt");
  
@@ -21,17 +23,32 @@ void setup() {
    }
    fill(255,0,0);
    String message = (radAngleWithUnicode +  " radians = "+ degrees+ "\u00b0");
+   messages[i]=message;
+   radianMeasure[i]=2*PI-float(numAndDen[0])/numAndDen[1]*PI;
+   
    textAlign(CENTER);
    textFont(createFont("Times New Roman",60));
-   text(message,400,65+115*i);
-   noStroke();
+   
+   
    fill(0,255,0);
    circle(400,105+115*i,60);
    fill(0);
-   arc(400, 105+115*i, 60, 60, 0, 2*PI-float(numAndDen[0])/numAndDen[1]*PI);
+   
   }
+ 
 }
 
+void draw(){
+  fill(255,255,255);
+  text(messages[frameCount-1],400,65+115*(frameCount-1));
+  fill(0,255,0);
+  circle(400,105+115*(frameCount-1),63);
+  fill(0);
+  arc(400, 105+115*(frameCount-1), 60, 60, 0, radianMeasure[frameCount-1]);
+  if(frameCount==5)
+  noLoop();
+  
+}
 
 int [] findNumAndDen (String radianMeasure) {
   int numerator;
