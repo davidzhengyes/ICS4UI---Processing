@@ -2,9 +2,6 @@ String [] messages = new String[5];
 float [] radianMeasure = new float[5];
 void setup() {
  String[] radAngles = loadStrings("radianMeasures.txt");
- 
-  
- 
  background(0);
  size(800,600);
  
@@ -21,7 +18,7 @@ void setup() {
    if (numAndDen[1]!=1){
      radAngleWithUnicode += "/" + numAndDen[1];
    }
-   fill(255,0,0);
+   fill(255);
    String message = (radAngleWithUnicode +  " radians = "+ degrees+ "\u00b0");
    messages[i]=message;
    radianMeasure[i]=2*PI-float(numAndDen[0])/numAndDen[1]*PI;
@@ -31,7 +28,7 @@ void setup() {
    
    
    fill(0,255,0);
-   circle(400,105+115*i,60);
+   circle(400,105+115*i,61);
    fill(0);
    
   }
