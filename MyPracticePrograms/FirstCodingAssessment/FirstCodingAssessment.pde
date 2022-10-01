@@ -25,13 +25,7 @@ void setup() {
    
    textAlign(CENTER);
    textFont(createFont("Times New Roman",60));
-   
-   
-   circle(400,105+115*i,61);
- 
-   
   }
- 
 }
 
 void draw(){
