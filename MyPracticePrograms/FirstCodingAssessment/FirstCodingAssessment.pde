@@ -1,7 +1,6 @@
 String [] messages = new String[5];
 float [] radianMeasure = new float[5];
 void setup() {
- float fraction;
  String[] radAngles = loadStrings("radianMeasures.txt");
  background(0);
  size(800,600);
@@ -22,11 +21,12 @@ void setup() {
   
    String message = (radAngleWithUnicode +  " radians = "+ degrees+ "\u00b0");
    messages[i]=message;
-   radianMeasure[i]=2*PI-float(numAndDen[0])/numAndDen[1]*PI;
+   radianMeasure[i]=float(numAndDen[0])/numAndDen[1]*PI;
    
    textAlign(CENTER);
    textFont(createFont("Times New Roman",60));
-   printArray(numAndDen);
+   printArray(radianMeasure);
+   
   }
   
 }
@@ -34,10 +34,17 @@ void setup() {
 void draw(){
   fill(255,255,255);
   text(messages[frameCount-1],400,65+115*(frameCount-1));
+  noFill();
+  stroke(255,255,255);
+  circle(400,105+115*(frameCount-1),60);
+  
   fill(0,255,0);
-  circle(400,105+115*(frameCount-1),63);
-  fill(0);
-  arc(400, 105+115*(frameCount-1), 60, 60, 0, radianMeasure[frameCount-1]);
+  if (radianMeasure[frameCount-1]>0)
+  arc(400, 105+115*(frameCount-1), 60, 60, 2*PI-radianMeasure[frameCount-1], 2*PI);
+  
+  else
+  arc(400, 105+115*(frameCount-1), 60, 60, 0, -1*radianMeasure[frameCount-1]);
+  
   if(frameCount==5)
   noLoop();
   
