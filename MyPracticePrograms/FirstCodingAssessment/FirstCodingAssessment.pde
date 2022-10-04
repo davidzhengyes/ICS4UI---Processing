@@ -1,6 +1,7 @@
 String [] messages = new String[5];
 float [] radianMeasure = new float[5];
 void setup() {
+ float fraction;
  String[] radAngles = loadStrings("radianMeasures.txt");
  background(0);
  size(800,600);
