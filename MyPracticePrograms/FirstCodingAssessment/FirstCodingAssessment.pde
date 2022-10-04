@@ -8,14 +8,14 @@ void setup() {
  for (int i=0; i<5; i++){
    String radAngle = radAngles[i];
    int[] numAndDen=findNumAndDen(radAngle);
-   float degrees=numAndDen[0]*180/numAndDen[1];
+   float degrees=degrees(float(numAndDen[0])/numAndDen[1]*PI);
    
    String radAngleWithUnicode = "\u03c0";
-   if (numAndDen[0]!=1){
+   if (abs(numAndDen[0])!=1){
      radAngleWithUnicode=numAndDen[0] + radAngleWithUnicode;
    }
    
-   if (numAndDen[1]!=1){
+   if (abs(numAndDen[1])!=1){
      radAngleWithUnicode += "/" + numAndDen[1];
    }
   
@@ -25,7 +25,9 @@ void setup() {
    
    textAlign(CENTER);
    textFont(createFont("Times New Roman",60));
+   printArray(numAndDen);
   }
+  
 }
 
 void draw(){
@@ -55,7 +57,13 @@ int [] findNumAndDen (String radianMeasure) {
   }
   
   if (piIndex != 0){
-    numerator=int(radianMeasure.substring(0,piIndex));
+    String BeforePi = radianMeasure.substring(0,piIndex);
+    
+    if(BeforePi.equals("-")){
+      numerator=-1;
+    }
+    else
+    numerator=int(BeforePi);
   }
   
   else{
