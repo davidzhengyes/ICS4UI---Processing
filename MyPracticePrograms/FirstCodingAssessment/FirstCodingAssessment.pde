@@ -8,7 +8,7 @@ void setup() {
  for (int i=0; i<5; i++){
    String radAngle = radAngles[i];
    int[] numAndDen=findNumAndDen(radAngle);
-   float degrees=degrees(float(numAndDen[0])/numAndDen[1]*PI);
+   float degrees=round(float(numAndDen[0])/numAndDen[1]*180);
    
    String radAngleWithUnicode = "\u03c0";
    if (abs(numAndDen[0])!=1){
@@ -47,7 +47,6 @@ void draw(){
   
   if(frameCount==5)
   noLoop();
-  
 }
 
 int [] findNumAndDen (String radianMeasure) {
