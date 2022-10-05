@@ -25,10 +25,7 @@ void setup() {
    
    textAlign(CENTER);
    textFont(createFont("Times New Roman",60));
-   printArray(radianMeasure);
-   
   }
-  
 }
 
 void draw(){
