@@ -1,5 +1,5 @@
 int n=30;
-float percentOfMines=0.01;
+float percentOfMines=0.1;
 float howManyRocks=5;
 int rockSize = 2;
 
@@ -38,6 +38,7 @@ void draw() {
   }
 }
 
+color currentCell;
 
 void plantFirstGeneration(){
   for(int i=0; i<n; i++){
@@ -56,7 +57,12 @@ void plantFirstGeneration(){
     int ypos=round(random(0,n));
     for (int j=0; j<rockSize; j++){
       for (int k=0; k<rockSize; k++){
-        if (cells[j][k] != color(255,255,0)){
+        try{
+          currentCell = cells[xpos+j][ypos+k];
+        }
+        catch (Exception e){
+        }
+        if (currentCell != color(255,255,0)){
           try {
           cells[xpos+j][ypos+k] = color(100);
           }
