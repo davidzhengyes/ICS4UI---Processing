@@ -1,7 +1,7 @@
 int n=30;
-float percentOfMines=0.002;
-float howManyRocks=6;
-int rockSize = 4;
+float percentOfMines=0.005;
+float howManyRocks=8;
+int rockSize = 3;
 
 color [][] cells = new color [n][n];
 color [][] cellsNext = new color [n][n];
@@ -51,19 +51,20 @@ void plantFirstRocks(){
     for (int j=0; j<rockSize; j++){
       for (int k=0; k<rockSize; k++){
         try{
+          
           currentCell = cells[xpos+j][ypos+k];
+          
+          if (currentCell != color(255,255,0)){
+            
+          cells[xpos+j][ypos+k] = color(100);
+          cellsNext[xpos+j][ypos+k]=color(100);
+          
+          }
         }
         catch (Exception e){
         }
         
-        if (currentCell != color(255,255,0)){
-          try {
-          cells[xpos+j][ypos+k] = color(100);
-          cellsNext[xpos+j][ypos+k]=color(100);
-          }
-          catch (Exception e ){
-          }
-        }
+        
       }
     }
   }
@@ -114,7 +115,7 @@ void setNextGeneration () {
             
             try {
               if (cells[i+k][j+l] == color(0,255,0)){
-                cellsNext[i+k][j+l]=color(255,0,0);
+                cellsNext[i+k][j+l]=color(red(colour)-75,0,0);
               }
             }
             catch(Exception e){
