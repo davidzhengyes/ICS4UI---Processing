@@ -114,8 +114,8 @@ void setNextGeneration () {
           for (int l=-1; l<2; l++){
             
             try {
-              if (cells[i+k][j+l] == color(0,255,0)){
-                cellsNext[i+k][j+l]=color(red(colour)-75,0,0);
+              if (cells[i+k][j+l] == color(0,255,0) && (k==0 || l==0)){
+                cellsNext[i+k][j+l]=color(red(colour)-40,0,0);
               }
             }
             catch(Exception e){
