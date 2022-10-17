@@ -1,8 +1,10 @@
 int n=30;
-float percentOfMines=0.005;
+int numberOfMines=1; 
 float howManyRocks=8;
 int rockSize = 3;
+int blastRadius=5;
 
+int[] minePos = new int [numberOfMines*2];
 color [][] cells = new color [n][n];
 color [][] cellsNext = new color [n][n];
 
@@ -16,8 +18,9 @@ void setup(){
   cellSize = (width-2*padding)/n;
   
   plantFirstGeneration();
+  printArray(minePos);
   stroke(255);
-  frameRate(3);
+  frameRate(0.5);
 }
 
 
@@ -72,26 +75,23 @@ void plantFirstRocks(){
 void plantFirstGeneration(){
   for(int i=0; i<n; i++){
     for (int j=0; j<n; j++){
-      
-      float rand = random(0,1);
-      
-      if (rand<percentOfMines){
-        
-        cells[i][j]=color(255,255,0);
-        cellsNext[i][j]=color(255,255,0); //fills both arrays so dont have to calculate every single cell every iteration of draw()
-        
-      }
-      
-      else{
         cells[i][j]=color(0,255,0);
         cellsNext[i][j]=color(0,255,0);
-      }
+      
     }
   }
   
+  for (int i=0; i<numberOfMines;i++){
+    int x=int(random(0,n));
+    int y=int(random(0,n));
+    cells[x][y]=color(255,255,0);
+    cellsNext[x][y]=color(255,255,0);
+    minePos[i*2]=x;
+    minePos[i*2+1]=y;
+  }
+  
   plantFirstRocks();
-  
-  
+
 }
 
 void copyNextCellsToCells(){
@@ -103,29 +103,50 @@ void copyNextCellsToCells(){
 }
 
 void setNextGeneration () {
-  for (int i=0; i<n; i++){
-    for (int j=0; j<n; j++){
-      color colour = cells[i][j];
-      
-      
-      if (red(colour)>0 && green(colour) >=0 && blue(colour)==0 ){
-      
-        for (int k=-1; k<2; k++){
-          for (int l=-1; l<2; l++){
-            
-            try {
-              if (cells[i+k][j+l] == color(0,255,0) && (k==0 || l==0)){
-                cellsNext[i+k][j+l]=color(red(colour)-40,0,0);
-              }
-            }
-            catch(Exception e){
-            }
-            
+  print("run");
+  for (int i=0; i<numberOfMines; i++){
+    int x=minePos[i*2];
+    int y=minePos[i*2+1];
+    for (int j=(x-blastRadius); j<(x+blastRadius);j++){
+      for (int k=(y-blastRadius); k<(y+blastRadius); k++){
+        try{
+          color colour=cells[j][k];
+          float distance=sqrt(pow((j-x),2)+pow((k-y),2));
+          if (colour==color(0,255,0) && distance<blastRadius){
+            cellsNext[j][k]=color(255,0,0);
           }
-          
         }
-        
+        catch(Exception e){
+        }
       }
     }
+    
   }
 }
+
+
+  //for (int i=0; i<n; i++){
+  //  for (int j=0; j<n; j++){
+  //    color colour = cells[i][j];
+      
+      
+  //    if (red(colour)>0 && green(colour) >=0 && blue(colour)==0 ){
+      
+  //      for (int k=-1; k<2; k++){
+  //        for (int l=-1; l<2; l++){
+            
+  //          try {
+  //            if (cells[i+k][j+l] == color(0,255,0) && (k==0 || l==0)){
+  //              cellsNext[i+k][j+l]=color(red(colour)-40,0,0);
+  //            }
+  //          }
+  //          catch(Exception e){
+  //          }
+            
+  //        }
+          
+  //      }
+        
+  //    }
+  //  }
+  //}
