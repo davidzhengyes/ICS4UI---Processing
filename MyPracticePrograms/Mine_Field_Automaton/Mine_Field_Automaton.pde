@@ -2,17 +2,19 @@ int n=30;
 int numberOfMines=1; 
 float howManyRocks=15;
 int rockSize = 5;
-
-int regenerationRate=5;
-
+int regenerationRate=20;
+int blastRadius=5;
 
 int[] minePos = new int [numberOfMines*2];
 color [][] cells = new color [n][n];
 color [][] cellsNext = new color [n][n];
 
+int blastTime=1;
 float cellSize;
 float padding = 50;  
 color currentCell;
+
+int redDelta,greenDelta,blueDelta;
 
 void setup(){
   size(800,800);
@@ -111,7 +113,7 @@ void setNextGeneration(){
       color colour = cells[i][j];
       
       
-      if (red(colour)>0 && green(colour) >=0 && blue(colour)==0 ){
+      if (red(colour)>0 && green(colour) >=0 && blue(colour)!=100 && blastTime<blastRadius){
       
         for (int k=-1; k<2; k++){
           for (int l=-1; l<2; l++){
@@ -127,19 +129,51 @@ void setNextGeneration(){
         } 
       }
       
-      if (green(colour)!=255 && colour!=color(100)){ //59,30,8
-        if (red(colour)>59){
-          int redDelta = int(red(colour))-regenerationRate;
+      
+      
+      
+      color nextColour=cellsNext[i][j];
+      if (green(nextColour)!=255 && nextColour!=color(100)){ //59,30,8
+        if (red(nextColour)-regenerationRate>59){
+          redDelta = -1*regenerationRate;
+          println(i,j);
+        }
+        else if (red(nextColour)+regenerationRate<59){
+          redDelta = regenerationRate;
+          print(i,j);
         }
         else{
-          int redDelta = 
+          redDelta=0;
         }
         
+        if (green(nextColour)-regenerationRate>30){
+          greenDelta = -1*regenerationRate;
+        }
+        else if (green(nextColour)+regenerationRate<30){
+          greenDelta = regenerationRate;
+        }
+        else{
+          greenDelta=0;
+        }
+        
+        if (blue(nextColour)-regenerationRate>8){
+          blueDelta = -1*regenerationRate;
+        }
+        else if (blue(nextColour)+regenerationRate<8){
+            blueDelta = regenerationRate;
+        }
+        else{
+          greenDelta=0;
+        }
+        
+       cellsNext[i][j]=color(red(nextColour)+redDelta,green(nextColour)+greenDelta,blue(nextColour)+blueDelta);
         
       }
       
     }
   }
+  blastTime++;
+  
 }
 
 
