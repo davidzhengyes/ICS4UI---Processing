@@ -2,7 +2,8 @@ int n=30;
 int numberOfMines=1; 
 float howManyRocks=15;
 int rockSize = 5;
-int blastRadius=5;
+
+int regenerationRate=5;
 
 
 int[] minePos = new int [numberOfMines*2];
@@ -12,7 +13,6 @@ color [][] cellsNext = new color [n][n];
 float cellSize;
 float padding = 50;  
 color currentCell;
-int blastTime=1;
 
 void setup(){
   size(800,800);
@@ -122,13 +122,22 @@ void setNextGeneration(){
               }
             }
             catch(Exception e){
-            }
-            
-          }
-          
+            }            
+          }          
+        } 
+      }
+      
+      if (green(colour)!=255 && colour!=color(100)){ //59,30,8
+        if (red(colour)>59){
+          int redDelta = int(red(colour))-regenerationRate;
+        }
+        else{
+          int redDelta = 
         }
         
+        
       }
+      
     }
   }
 }
