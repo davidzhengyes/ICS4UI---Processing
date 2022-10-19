@@ -3,7 +3,7 @@ int numberOfMines=1;
 float howManyRocks=15;
 int rockSize = 5;
 int regenerationRate=20;
-int blastRadius=5;
+int blastRadius=20;
 
 int[] minePos = new int [numberOfMines*2];
 color [][] cells = new color [n][n];
@@ -22,7 +22,7 @@ void setup(){
   cellSize = (width-2*padding)/n;
   
   plantFirstGeneration();
-  printArray(minePos);
+  
   stroke(255);
   frameRate(3);
 }
@@ -133,14 +133,14 @@ void setNextGeneration(){
       
       
       color nextColour=cellsNext[i][j];
-      if (green(nextColour)!=255 && nextColour!=color(100)){ //59,30,8
+      if (green(nextColour)!=255 && nextColour!=color(100) && blue(colour)!=255){ //59,30,8
         if (red(nextColour)-regenerationRate>59){
           redDelta = -1*regenerationRate;
-          println(i,j);
+          
         }
         else if (red(nextColour)+regenerationRate<59){
           redDelta = regenerationRate;
-          print(i,j);
+          
         }
         else{
           redDelta=0;
