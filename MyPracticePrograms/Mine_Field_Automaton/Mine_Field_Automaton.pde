@@ -1,11 +1,13 @@
 int n=30;
-int numberOfMines=1; 
+int numberOfMines=8; 
 float howManyRocks=15;
 int rockSize = 5;
 int regenerationRate=20;
 int blastRadius=20;
 
-int[] minePos = new int [numberOfMines*2];
+
+boolean stillExploding = true;
+
 color [][] cells = new color [n][n];
 color [][] cellsNext = new color [n][n];
 
@@ -24,7 +26,7 @@ void setup(){
   plantFirstGeneration();
   
   stroke(255);
-  frameRate(3);
+  frameRate(10);
 }
 
 
@@ -61,7 +63,7 @@ void plantFirstRocks(){
           
           currentCell = cells[xpos+j][ypos+k];
           
-          if (currentCell != color(255,255,0)){
+          if (currentCell != color(0,0,255)){
             
           cells[xpos+j][ypos+k] = color(100);
           cellsNext[xpos+j][ypos+k]=color(100);
@@ -88,10 +90,9 @@ void plantFirstGeneration(){
   for (int i=0; i<numberOfMines;i++){
     int x=int(random(0,n));
     int y=int(random(0,n));
-    cells[x][y]=color(255,255,0);
-    cellsNext[x][y]=color(255,255,0);
-    minePos[i*2]=x;
-    minePos[i*2+1]=y;
+    cells[x][y]=color(0,0,255);
+    cellsNext[x][y]=color(0,0,255);
+
   }
   
   plantFirstRocks();
@@ -113,7 +114,7 @@ void setNextGeneration(){
       color colour = cells[i][j];
       
       
-      if (red(colour)>0 && green(colour) >=0 && blue(colour)!=100 && blastTime<blastRadius){
+      if (red(colour)>0 && green(colour) >=0 && blue(colour)!=100){
       
         for (int k=-1; k<2; k++){
           for (int l=-1; l<2; l++){
@@ -133,7 +134,7 @@ void setNextGeneration(){
       
       
       color nextColour=cellsNext[i][j];
-      if (green(nextColour)!=255 && nextColour!=color(100) && blue(colour)!=255){ //59,30,8
+      if (green(nextColour)!=255 && nextColour!=color(100) && blue(colour)!=255 && stillExploding ==false){ //59,30,8
         if (red(nextColour)-regenerationRate>59){
           redDelta = -1*regenerationRate;
           
