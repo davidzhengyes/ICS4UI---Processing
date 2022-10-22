@@ -1,11 +1,15 @@
 void mouseClicked() {
   int col = int((mouseX - padding)/cellSize);
   int row = int((mouseY - padding)/cellSize);
-  if (blue(cells[row][col]) == 255){
-    cellsNext[row][col] = color(255,255,0);
+  try{
+    if (blue(cells[row][col]) == 255){
+      cellsNext[row][col] = color(255,255,0);
+      copyNextCellsToCells();
+      redraw();
+    }
   }
-  print("h");
-  copyNextCellsToCells();
+  catch (Exception e){
+  }
   
-  redraw();
+  
 }
