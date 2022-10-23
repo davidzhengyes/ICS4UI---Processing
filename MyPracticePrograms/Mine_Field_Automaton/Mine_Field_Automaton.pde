@@ -26,7 +26,7 @@ void setup(){
   plantFirstGeneration();
   
   stroke(255);
-  frameRate(10);
+  frameRate(1);
 }
 
 
@@ -115,13 +115,16 @@ void setNextGeneration(){
       
       
       if (red(colour)>0  && blue(colour)!=100){
+       
       
         for (int k=-1; k<2; k++){
           for (int l=-1; l<2; l++){
             
             try {
-              if (cells[i+k][j+l] == color(0,255,0) && (k==0 || l==0)){
-                cellsNext[i+k][j+l]=color(red(colour)-15,0,0);
+              if ( (k==0 || l==0)){
+                if (red(cells[i][j]) > red(cellsNext[i+k][j+l])) {
+                  cellsNext[i+k][j+l]=color(red(colour)-15,0,0);
+                }
               }
               
               if (cells[i+k][j+l] == color(0,0,255)){
