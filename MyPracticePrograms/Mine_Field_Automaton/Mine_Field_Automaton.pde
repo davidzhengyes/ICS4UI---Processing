@@ -3,7 +3,7 @@ int numberOfMines=8;
 float howManyRocks=15;
 int rockSize = 5;
 int regenerationRate=20;
-int blastRadius=20;
+int explosionRadius = 5;
 
 
 boolean stillExploding = true;
@@ -26,7 +26,7 @@ void setup(){
   plantFirstGeneration();
   
   stroke(255);
-  frameRate(1);
+  frameRate(10);
 }
 
 
@@ -122,8 +122,8 @@ void setNextGeneration(){
             
             try {
               if ( (k==0 || l==0)){
-                if (red(cells[i][j]) > red(cellsNext[i+k][j+l])) {
-                  cellsNext[i+k][j+l]=color(red(colour)-15,0,0);
+                if (red(cells[i][j]) > red(cellsNext[i+k][j+l]) && cells[i+k][j+l]!=color(100)) {
+                  cellsNext[i+k][j+l]=color(red(colour)-255/(explosionRadius-1),0,0);
                 }
               }
               
