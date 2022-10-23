@@ -28,7 +28,7 @@ void setup(){
   plantFirstGeneration();
   
   stroke(255);
-  frameRate(10);
+  frameRate(1);
 }
 
 
@@ -111,10 +111,11 @@ void copyNextCellsToCells(){
 
 
 void setNextGeneration(){
+  
   for (int i=0; i<n; i++){
     for (int j=0; j<n; j++){
       color colour = cells[i][j];
-      
+      boolean interactCheck=false;
       
       if (red(colour)>0  && blue(colour)!=100){
        
@@ -129,8 +130,18 @@ void setNextGeneration(){
                 }
               }
               
-              if (cells[i+k][j+l] == color(0,0,255)){
-                cellsNext[i+k][j+l]=color(255,255,0);
+              if (blue(cells[i+k][j+l]) ==255 && red(cells[i+k][j+l])==0){
+                int distanceFromExplosion = int((255-red(colour))/(255/explosionRadius-1))+1;
+                
+                float rand=random(0,1);
+                
+                if (rand>(float(distanceFromExplosion)/explosionRadius) && interactCheck ==false) {
+                  print(frameRate, distanceFromExplosion,rand);
+                  cellsNext[i+k][j+l]=color(255,255,0);
+                  
+                  
+                }
+                interactCheck=true;
               }
             }
             catch(Exception e){
