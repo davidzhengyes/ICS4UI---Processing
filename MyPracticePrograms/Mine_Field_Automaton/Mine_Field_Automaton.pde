@@ -3,8 +3,10 @@ int numberOfMines=8;
 float howManyRocks=15;
 int rockSize = 5;
 int regenerationRate=20;
-int explosionRadius = 5;
+int explosionRadius = 17;
 
+//stil have to do 
+//uniform bomb placement? , add in regeneration; probability of explode maybe change colour
 
 boolean stillExploding = true;
 
