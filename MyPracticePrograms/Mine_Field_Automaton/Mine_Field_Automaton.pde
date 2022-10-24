@@ -76,6 +76,7 @@ void plantFirstRocks(){
             
           cells[xpos+j][ypos+k] = color(100);
           cellsNext[xpos+j][ypos+k]=color(100);
+          robotVisits[xpos+j][ypos+k]=999;
           
           }
         }
@@ -249,6 +250,11 @@ void setNextGeneration(){
   robotVisits[currentRobotX+i][currentRobotY+j]+=1;
   currentRobotX+=i;
   currentRobotY+=j;
+  
+  if (cellsNext[currentRobotX][currentRobotY]==color(0,0,255)){
+    cellsNext[currentRobotX][currentRobotY]=color(255,255,0);
+    
+  }
  
   
   
