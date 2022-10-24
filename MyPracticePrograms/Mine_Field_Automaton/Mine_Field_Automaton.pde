@@ -12,6 +12,8 @@ boolean stillExploding = true;
 
 color [][] cells = new color [n][n];
 color [][] cellsNext = new color [n][n];
+int [][] robotVisits = new int [n][n];
+int currentRobotX=0, currentRobotY=0;
 
 int blastTime=1;
 float cellSize;
@@ -28,7 +30,7 @@ void setup(){
   plantFirstGeneration();
   
   stroke(255);
-  frameRate(1);
+  frameRate(10);
 }
 
 
@@ -43,8 +45,13 @@ void draw() {
   for (int i=0; i<n; i++) {
     for (int j=0; j<n; j++) {
       float x = padding + j*cellSize;
-
-      fill( cells[i][j] );        
+      
+      if(i==currentRobotX && j==currentRobotY){
+        fill(color(255));
+      }
+      else{
+        fill( cells[i][j] );  
+      }
       rect(x, y, cellSize, cellSize);
     }
 
@@ -98,6 +105,7 @@ void plantFirstGeneration(){
   }
   
   plantFirstRocks();
+  robotVisits[0][0]=1;
 
 }
 
@@ -118,14 +126,16 @@ void setNextGeneration(){
       boolean interactCheck=false;
       
       if (red(colour)>0  && blue(colour)!=100){
-       
+      //if the current cell being checked has "energy", as in if it has some red, but not a rock
       
         for (int k=-1; k<2; k++){
           for (int l=-1; l<2; l++){
             
             try {
-              if ( (k==0 || l==0)){
-                if (red(cells[i][j]) > red(cellsNext[i+k][j+l]) && cells[i+k][j+l]!=color(100)) {
+              if ( (k==0 || l==0)){ 
+                //checking cells around, if the current cell is more red than the next cell's neighbour but is not a rock or an unexploded mine
+                if (red(cells[i][j]) > red(cellsNext[i+k][j+l]) && cells[i+k][j+l]!=color(100) && blue(cellsNext[i+k][j+l])!=255) {
+                  //then reduce the red by a step of the next cell by a factor of the explosion radius
                   cellsNext[i+k][j+l]=color(red(colour)-255/(explosionRadius-1),0,0);
                 }
               }
@@ -133,16 +143,17 @@ void setNextGeneration(){
               if (blue(cells[i+k][j+l]) ==255 && red(cells[i+k][j+l])==0){
                 int distanceFromExplosion = int((255-red(colour))/(255/explosionRadius-1))+1;
                 
-                float rand=random(0,1);
+                float rand=random(0,0.6);
                 
                 if (rand>(float(distanceFromExplosion)/explosionRadius) && interactCheck ==false) {
-                  print(frameRate, distanceFromExplosion,rand);
+                  println(frameCount, distanceFromExplosion,rand);
                   cellsNext[i+k][j+l]=color(255,255,0);
-                  
                   
                 }
                 interactCheck=true;
               }
+              
+            
             }
             catch(Exception e){
             }            
@@ -195,32 +206,50 @@ void setNextGeneration(){
   }
   blastTime++;
   
-}
-
-
-
-
-//** Circular explosion motion but doesn't model going around rocks as well**//
-//void setNextGeneration () {
-//  print("run");
-//  for (int i=0; i<numberOfMines; i++){
-//    int x=minePos[i*2];
-//    int y=minePos[i*2+1];
-//    for (int j=(x-blastTime-2); j<(x+blastTime+2);j++){
-//      for (int k=(y-blastTime-2); k<(y+blastTime+2); k++){
-//        try{
-//          color colour=cells[j][k];
-//          float distance=sqrt(pow((j-x),2)+pow((k-y),2));
-//          if (colour==color(0,255,0) && distance<blastTime+1){
-//            cellsNext[j][k]=color(255,0,0);
-//          }
-//        }
-//        catch(Exception e){
-//        }
-//      }
-//    }
+  
+  int[]robotNeighbours=new int[9];
+  for (int i=-1; i<2; i++){
+    for (int j=-1; j<2; j++){
+      try{
+        
+        //robotNeighbours array is sequentially through the 3x3 grid of neighbours
+        robotNeighbours[(i+1)*3+j+1]=999; //set every index to 999
+        robotNeighbours[(i+1)*3+j+1] = robotVisits[currentRobotX+i][currentRobotY+j]; //overwrite the ones that actually have a value (not in the border)
+        
+      }
+      catch(Exception e){ 
+      }
+    }
+  }
+  robotNeighbours[4]=999; //don't consider center cell
+  
+  int minimum=999;
+  for (int i=0; i<robotNeighbours.length;i++){
+    if (robotNeighbours[i]<minimum){
+      minimum=robotNeighbours[i];
+    }
+  }
+  
+  
+  int minimumIndex=0;
+  
+  int randIndex=int(random(0,9));
+  for (int i=randIndex; i<randIndex+robotNeighbours.length; i++){
+    if(robotNeighbours[i%9]==minimum){
+      minimumIndex=i%9;
+      break; 
+    }
     
-//  }
-//  if (blastTime<blastRadius)
-//  blastTime++;
-//}
+  }
+  
+  //after choosing random, goes back to grid position with these formulas
+  int i = (minimumIndex-(minimumIndex%3))/3-1;
+  int j= minimumIndex%3-1;
+  
+  robotVisits[currentRobotX+i][currentRobotY+j]+=1;
+  currentRobotX+=i;
+  currentRobotY+=j;
+ 
+  
+  
+}
