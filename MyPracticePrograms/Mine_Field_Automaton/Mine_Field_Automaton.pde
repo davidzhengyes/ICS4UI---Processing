@@ -4,8 +4,8 @@ float howManyRocks=15;
 int rockSize = 5;
 int regenerationRate=20;
 int explosionRadius = 17;
-boolean robotSentIn=true;
-
+boolean robotSentIn=true; //if false, need to click to activate mines
+//modifiable variables, be reasonable
 
 
 color [][] cells = new color [n][n];
@@ -21,7 +21,6 @@ int blastTime=1;
 float cellSize;
 float padding = 50;  
 color currentCell;
-
 int redDelta,greenDelta,blueDelta;
 
 void setup(){
@@ -34,8 +33,6 @@ void setup(){
   stroke(255);
   frameRate(10);
 }
-
-
 
 
 void draw() {
@@ -53,6 +50,7 @@ void draw() {
       else{
         fill( cells[i][j] );  
       }
+      
       rect(x, y, cellSize, cellSize);
     }
 
@@ -93,7 +91,7 @@ void plantFirstRocks(){
 void plantFirstGeneration(){
   for(int i=0; i<n; i++){
     for (int j=0; j<n; j++){
-        cells[i][j]=color(0,255,0);
+        cells[i][j]=color(0,255,0); //laying out everything as green first
         cellsNext[i][j]=color(0,255,0);
     }
   }
@@ -204,7 +202,7 @@ void setNextGeneration(){
   }
   blastTime++;
   
-  //everything other than this is independent, for the robot
+  //everything below this is independent from the explosion, for the robot
   if(robotSentIn){
 
     int[]robotNeighbours=new int[9];
@@ -240,7 +238,6 @@ void setNextGeneration(){
         minimumIndex=i%9;
         break; 
       }
-      
     }
     
     //after choosing random, goes back to grid position with these formulas
