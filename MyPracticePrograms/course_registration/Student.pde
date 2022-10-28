@@ -19,7 +19,7 @@ class Student{
   void printTimetable(){
     for (int i=0; i<this.Timetable.size();i++){
 
-      println(this.Timetable.get(i).courseCode);
+      println(this.name,"has",this.Timetable.get(i).courseCode);
       
     }
   }

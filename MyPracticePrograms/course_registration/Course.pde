@@ -1,10 +1,11 @@
 class Course{
   String courseCode;
-  String teacher;
+  
   ArrayList <Student> classList;
   Student currentStudent;
+  Teacher teacher;
   
-  Course(String c, String t){
+  Course(String c,Teacher t){
     this.courseCode=c;
     this.teacher=t;
     this.classList = new ArrayList<Student>();
