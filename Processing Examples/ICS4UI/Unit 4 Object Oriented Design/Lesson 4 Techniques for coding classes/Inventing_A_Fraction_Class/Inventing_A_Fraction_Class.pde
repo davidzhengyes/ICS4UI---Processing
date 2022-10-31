@@ -56,10 +56,18 @@ void setup() {
   println();
 
   //CODE THE power() METHOD
-  //Fraction fToTheFour = f.power(4);
-  //fToTheFour.setLabel("f^4");
-  //fToTheFour.display();
-
+  Fraction fToTheFour = f.power(4);
+  fToTheFour.setLabel("f^4");
+  fToTheFour.display();
+  
+  Fraction j = new Fraction(0.375,"j");
+ 
+  j.display();
+  
+  Fraction x = new Fraction(3, 4, "f");   
+  Fraction d = new Fraction(1, 3, "g"); 
+  Fraction xPlusd = x.addTo(d);
+  xPlusd.display();
   //CODE THE add() METHOD
   //Fraction sumFG = f.add(g);
  // sumFG.setLabel("f + g");

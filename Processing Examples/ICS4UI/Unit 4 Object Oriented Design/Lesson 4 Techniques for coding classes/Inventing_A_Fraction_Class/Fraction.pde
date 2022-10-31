@@ -21,6 +21,23 @@ static class Fraction {
     this.label = l;
   }
   
+  //CONSTRUCTOR 3
+  Fraction(float f,String l){
+    if (str(f).indexOf(".")<0){
+      this.numerator=int(f);
+      this.denominator=1;
+    }
+    
+    else{
+      float tenFactor = pow(10,str(f).length()-str(f).indexOf(".")-1);
+      this.numerator=int(f*tenFactor);
+      this.denominator=int(tenFactor);
+    }  
+    
+    this.label=l;
+    this.reduce();
+  }
+  
   
   //ADD A 3rd CONSTRUCTOR THAT LETS THE USER CREATE A FRACTION FROM A DECIMAL. 
   //FOR EXAMPLE, Fraction f = new Fraction(0.375)  WOULD SET f TO 3/8.
@@ -108,8 +125,8 @@ static class Fraction {
   
   
   static int getLCM(int a, int b) {
-    //CODE THIS USING THE GCD-LCM-PRODUCT THEOREM
-    return -1;
+    
+    return a*b/getGCD(a,b);
   }
   
   
@@ -135,6 +152,19 @@ static class Fraction {
   //The user has no access to it from setup().
   private static boolean isWholeNumber( float d ) {
       return d == round(d);
+  }
+  
+  Fraction power(int p){
+    return new Fraction (int(pow(this.numerator,p)),int(pow(this.denominator,p)),this.label+"^"+str(p));
+    
+  }
+  
+  Fraction addTo(Fraction f){
+    int newDen=getLCM(f.denominator,this.denominator);
+    int thisNum = int(float(newDen)/this.denominator*this.numerator);
+    int fNum = int(float(newDen)/f.denominator*f.numerator);
+    
+    return new Fraction(thisNum+fNum,newDen,f.label + "+" +this.label);
   }
   
 } //END OF FRACTION CLASS
