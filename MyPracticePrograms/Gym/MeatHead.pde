@@ -1,0 +1,9 @@
+class MeatHead{
+  
+  int exhaustion;
+  
+  
+  
+  
+  
+}
