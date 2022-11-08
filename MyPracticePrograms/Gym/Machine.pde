@@ -1,6 +1,5 @@
 class Machine{
-  
-  
+  MeatHead meathead;
   
   
 }
