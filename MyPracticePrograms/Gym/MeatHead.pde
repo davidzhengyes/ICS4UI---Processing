@@ -33,10 +33,15 @@ class Meathead{
   void rest (int time){
     brainClarity+=time;
     exhaustion-=time;
+    println(this.name,"has rested for",time,"minutes, they now have an exhaustion level of",exhaustion);
+    
   }
   
   void useMachine(Machine m){
-    
+    if (isChanged==false){
+      println("People stare because",this.name,"is still wearing their winter coat and boots", this.name,"does not start using the machine");
+      
+    }
   }
   
 }
