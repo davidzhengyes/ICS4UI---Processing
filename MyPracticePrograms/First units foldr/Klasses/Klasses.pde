@@ -24,4 +24,8 @@ void setup(){
   Ball redBall = new Ball (100,100,color(0,0,255));
   aaron.thro(redBall);
   snoopy.retrieve(redBall);
+  
+  
+  Chihuahua rat = new Chihuahua("rat",2);
+  rat.describe();
 }
