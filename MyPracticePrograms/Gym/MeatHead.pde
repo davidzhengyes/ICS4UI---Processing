@@ -8,7 +8,9 @@ class Meathead{
   int brainClarity;
   boolean isChanged;
   
-  Meathead(String n, int h, int w, int e, int f, int m, int b){
+  Machine currentMachine;
+  
+  Meathead(String n, int h, int w, int e, int f, int m){
     this.name = n;
     this.heightInCM = h;
     this.weight = w;
