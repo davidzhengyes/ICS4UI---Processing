@@ -7,8 +7,8 @@ void setup(){
   Worker jamal = new Worker ("Jamal", 50, 17);
   workers.add(david);
   workers.add(jamal);
-  Meathead antoun = new Meathead("Antoun",5,5,5,5);
-  Meathead Ronnie = new Meathead("Ronnie Coleman", 5,5,5,5);
+  Meathead antoun = new Meathead("Antoun",120,45,2,16);
+  Meathead Ronnie = new Meathead("Ronnie Coleman", 189,104,12,50);
   Meathead Pranav = new Meathead ("Pranav");
   Meathead Eddie = new Meathead("Eddie", 191, 164, 10, 80);
   Machine benchPress = new Machine ("Bench Press", 5, 20, 0);
@@ -44,6 +44,8 @@ void setup(){
   Eddie.doSet(10);
   Eddie.useMachine(benchPress);
   Ronnie.useMachine(benchPress);
+  
+  jamal.cleanMachine(benchPress);
   Ronnie.dropWeights();
   
 }
