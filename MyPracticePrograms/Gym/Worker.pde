@@ -10,9 +10,17 @@ class Worker{
   }
   
   
-  void stopFight(Fight f){
+  boolean canStopFight(Fight f){
     
-    
+    if (abs(f.differenceInFightCapacity)>1){
+      
+      println("the fight was too one-sided, so" ,this.name,"was not able to stop it");
+      println();
+      return false;
+    }
+    else{
+      return true;
+    }   
   }
  
   void cleanMachine (Machine m){
