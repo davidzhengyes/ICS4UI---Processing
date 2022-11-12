@@ -13,6 +13,8 @@ class Fight{
     float m1FightingCapacity = float(1)/m1.heightInCM * m1.weight / m1.exhaustion * m1.fightingSkills * m1.muscleMass;
     float m2FightingCapacity = float(1)/m2.heightInCM * m2.weight / m2.exhaustion * m2.fightingSkills * m2.muscleMass;
     
+    workers.get(int(random(workers.size()))).stopFight(this);
+    
     if (m1FightingCapacity>m2FightingCapacity){
       m1.currentMachine = machineFoughtOver;
       m2.currentMachine = null;
