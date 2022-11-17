@@ -2,7 +2,10 @@ void setup(){
   size(1000,1000);
   
   noLoop();
+  println(getA(500));
+  println(getB(500));
   
+  new ComplexNum(1.0,2.0).multiply(new ComplexNum(2,3)).describe();
 }
 
 void draw(){
@@ -11,18 +14,22 @@ void draw(){
       float a=getA(x);
       float b=getB(y);
       
-      ComplexNumber c = new ComplexNumber(a,b);
-      ComplexNumber z=c;
+      ComplexNum c = new ComplexNum(a,b);
+      ComplexNum z=c;
       
       int n=1;
+      float zMagnitude = sqrt(pow(z.realPart,2) + pow(z.imagPart,2));
       
-      while (z is still small enough and n<=200){
-        z=z^2+c;
+      while (zMagnitude<2 && n<=200){
+        z=z.multiply(z).add(c);
         n++;
+        zMagnitude = sqrt(pow(z.realPart,2) + pow(z.imagPart,2));      
       }
+    
       
-      if(n==200){
-        draw a black dot at x,y;
+      if(n==201){
+        
+        point(x,y);
       }
     }
   }
@@ -33,10 +40,7 @@ float getA(float x){
 }
 
 float getB(float y){
-  if (y<=500){
-    return (1000-y)/1000*3-1.5;
-  }
-  else{
+
     return ((1000-y)/1000*3-1.5);
-  }
+
 }
