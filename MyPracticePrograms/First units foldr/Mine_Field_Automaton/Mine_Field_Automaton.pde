@@ -1,3 +1,5 @@
+import g4p_controls.*;
+
 int n=30;
 int numberOfMines=8; 
 float howManyRocks=15;
@@ -32,6 +34,7 @@ void setup(){
   
   stroke(255);
   frameRate(10);
+  createGUI();
 }
 
 
@@ -269,4 +272,17 @@ void setNextGeneration(){
       fullyStopped=true;
     }
   }
+}
+
+
+void explodeAll(){
+  for (int i=0; i<n; i++){
+    for (int j=0; j<n; j++){
+      if (cells[i][j]==color(255,255,0)){
+        
+        cellsNext[i][j]=color(0,0,255);
+      }
+    }
+  }
+  
 }
