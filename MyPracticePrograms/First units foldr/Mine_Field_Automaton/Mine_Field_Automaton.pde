@@ -276,11 +276,12 @@ void setNextGeneration(){
 
 
 void explodeAll(){
+
   for (int i=0; i<n; i++){
     for (int j=0; j<n; j++){
-      if (cells[i][j]==color(255,255,0)){
+      if (cells[i][j]==color(0,0,255)){
         
-        cellsNext[i][j]=color(0,0,255);
+        cellsNext[i][j]=color(255,255,0);
       }
     }
   }
