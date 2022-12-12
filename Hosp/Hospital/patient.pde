@@ -10,10 +10,17 @@ class Patient {
   boolean isSeated;
   boolean reachedDoctor;
   
+  int chairIndex;
   boolean searchingLeft;
+  boolean hasSeat;
+  boolean samexWithSeat;
+  boolean reachedChairY;
+  boolean reachedSeat;
   
   float patientX;
   float patientY;
+  
+ 
   
   Doctor currentDoctor;
   
@@ -29,6 +36,11 @@ class Patient {
     this.patientY = pY;
     this.reachedDoctor = false;
     this.currentDoctor = null;
+    this.chairIndex=-1;
+    this.hasSeat=false;
+    this.samexWithSeat=false;
+    this.reachedChairY=false;
+    this.reachedSeat=false;
     
     this.updateColor();
     

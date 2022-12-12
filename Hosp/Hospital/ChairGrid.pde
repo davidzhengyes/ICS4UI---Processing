@@ -19,12 +19,12 @@ class ChairGrid{
 
   void display(){
     xStart=leftXpos;
-    for (int i=0; i<chairNum; i++){
+    for (int i=0; i<chairNum+1; i++){
       
       strokeWeight(5);
       stroke(0);
       line(xStart,middleYpos-15,xStart,middleYpos+15);
-      line(leftXpos,middleYpos,leftXpos+15*(chairNum-1),middleYpos);
+      line(leftXpos,middleYpos,leftXpos+15*(chairNum),middleYpos);
       
       xStart+=15;
     }

@@ -1,4 +1,5 @@
 class Building{
+  //fields
   int numRooms;
   int pathWidth;
   
@@ -14,7 +15,7 @@ class Building{
   
   ArrayList <Room> rooms = new ArrayList <Room>();
   
-  
+  //constructor
   Building(int r,int p,int w, int l, int dw){
     this.numRooms = r;
     this.pathWidth=p;
@@ -27,6 +28,7 @@ class Building{
     
   }
   
+  //makes new building and room coordinates
   void createBuilding(){
     rooms = new ArrayList <Room>();
     allDoctors = new ArrayList<Doctor>();
@@ -46,13 +48,13 @@ class Building{
           currRoom.xPos = width-(width-this.pathWidth)/2;
         }
         
-        allDoctors.add(new Doctor((currRoom.xPos+this.xWidth)-(this.xWidth/2), (currRoom.yPos+this.yWidth)-(this.yWidth/2)));
+        allDoctors.add(new Doctor((currRoom.xPos+this.xWidth)-(this.xWidth/2), (currRoom.yPos+this.yWidth)-(this.yWidth/2))); //adds a doctor to each room
       }
     
     }
   }
   
-  
+  //draws rooms and the walls around them
   void drawBuilding(){
     
     for (int i=0; i<this.numRooms; i++){
@@ -68,16 +70,32 @@ class Building{
       rect(currRoom.xPos, currRoom.yPos, this.xWidth, this.yWidth);
       
       
+      fill(0);
+      textAlign(CENTER,CENTER);
+      textSize(30);
+      
+      
+      
       stroke(0);
       strokeWeight(1);
       if (i%2==0){
-        
+        //these are to split the lines along the side of the room, making a gap
         line(currRoom.xPos+this.xWidth+2, currRoom.yPos,currRoom.xPos+this.xWidth+2,currRoom.yPos+(this.yWidth-this.doorWidth)/2.0);
         line(currRoom.xPos+this.xWidth+2, currRoom.yPos+(this.yWidth-this.doorWidth)/2.0 + this.doorWidth,currRoom.xPos+this.xWidth+2,currRoom.yPos+this.yWidth);
+        
+        fill(0);
+        textAlign(CENTER,CENTER);
+        textSize(30);
+        text(str(int(allDoctors.get(i).doctorSkill)),allDoctors.get(i).xPos-20,allDoctors.get(i).yPos-5);
       }
       else{
         line(currRoom.xPos-2,currRoom.yPos,currRoom.xPos-2,currRoom.yPos+(this.yWidth-this.doorWidth)/2.0);
         line(currRoom.xPos-2,currRoom.yPos+(this.yWidth-this.doorWidth)/2.0+this.doorWidth,currRoom.xPos-2,currRoom.yPos+this.yWidth);
+        
+        fill(0);
+        textAlign(CENTER,CENTER);
+        textSize(30);
+        text(str(int(allDoctors.get(i).doctorSkill)),allDoctors.get(i).xPos+20,allDoctors.get(i).yPos-5);
       }
       
       strokeWeight(5);
