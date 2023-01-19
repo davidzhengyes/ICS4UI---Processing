@@ -1,8 +1,9 @@
-int maximumLevel = 7;
+int maximumLevel = 6;
 int padding = 50;
 int currLevel = 1;
 
 void setup() {
+  noStroke();
     size(600,600);
     frameRate(1);
     fill(255,255,0);

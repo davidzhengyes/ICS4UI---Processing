@@ -1,0 +1,25 @@
+What is da product ?
+Demonstration of angles between limbs while walking, running, climbing stairs, shorter limb ? people, bone disorders, muscular attrophy
+
+
+
+Who might use the product:
+-Doctors, people trying to discover what they are interested in, scientists 
+that are trying to see the effects of a new technology on the human body
+
+What the user wil see on screen:
+Side profile of a cartoon simplified human body, controls related to preset 
+demonstrations, visual representations of angles, showing which joints are able 
+to freely move
+-Ground moving backwards to illustrate walking
+
+-What the user will be able to do:
+Choose which joint is unlocked, move limb from that joint by changing angles, by 
+either moving a slider or dragging limbs.
+-Record movement to be analyzed
+
+What the user interface will look like:
+Preset buttons to be able to show a regular human movement or some other examples
+Buttons to lock/unlock joints
+Button to record/stop recording movement so it can be analyzed by an algorithm
+Some indicator to show that recording is being done

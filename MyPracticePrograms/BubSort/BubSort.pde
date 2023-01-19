@@ -20,16 +20,16 @@ int[] newSort(int [] a){
   }
   
   for (int i=0; i<a.length; i++){
-    printArray(A);
+
     int minimum=A.get(0);
     int indexToDelete=0;
     for (int g=0; g<A.size(); g++){
-      if (a[g]<minimum ){
+      if (A.get(g)<minimum ){
         minimum=A.get(g);
         indexToDelete=g;
       }
     }
-    println(minimum);
+
     a[i]=minimum;
     A.remove(indexToDelete);
 
