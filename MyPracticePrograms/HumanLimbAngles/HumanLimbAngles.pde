@@ -1,4 +1,6 @@
 Human bob = new Human("bob");
+boolean leftMousePressed;
+boolean jointSelected=false;
 void setup(){
   size(600,600);
   background(0);
@@ -16,6 +18,7 @@ void setup(){
 
 
 void draw(){
+  
   //updatePosFromAngles();  
   bob.display();
   
