@@ -8,7 +8,7 @@ void setup(){
 
 
 void draw(){
-  updatePosFromAngles();
+  //updatePosFromAngles();  
   
   
 }
