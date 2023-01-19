@@ -3,6 +3,7 @@ class Joint{
   String type;
   Boolean locked;
   
+  
   Joint(String t, int jX,int jY){
     this.type=t;
     this.jointX=jX;

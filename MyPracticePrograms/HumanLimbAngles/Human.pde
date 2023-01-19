@@ -36,7 +36,12 @@ class Human{
     for (int i=0; i<allJoints.size(); i++){
       Joint currJoint = allJoints.get(i);
       strokeWeight(15);
-      stroke(0,0,255);
+      if (currJoint.locked){
+        stroke(0,0,255);
+      }
+      else{
+        stroke(0,255,0);
+      }
       point(currJoint.jointX,currJoint.jointY);
     }
   }
