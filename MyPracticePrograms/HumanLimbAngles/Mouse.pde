@@ -8,10 +8,18 @@ void mousePressed(){
         if (mouseY > currJoint.jointY-7 && mouseY<currJoint.jointY+7){
        
           if (currJoint.locked){
+            Joint unlockedJoint = currJoint;
             currJoint.locked=false;
+            
+            for (int j=0; j<bob.allJoints.size(); j++){
+              if (bob.allJoints.get(j) != unlockedJoint && bob.allJoints.get(j).locked==false){
+                bob.allJoints.get(j).locked=true;
+              }
+            }
           }
           else{
             currJoint.locked=true;
+            
           }
           
         }
