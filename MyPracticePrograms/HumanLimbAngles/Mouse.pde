@@ -1,6 +1,6 @@
 void mousePressed() {
   leftMousePressed=true;
-
+  
   //detects if you are on a joint
   for (int i=0; i<bob.allJoints.size(); i++) {
     Joint currJoint = bob.allJoints.get(i);
@@ -32,19 +32,30 @@ void mousePressed() {
     if (mouseX>min(currLimb.tX,currLimb.bX)-7 && mouseX<max(currLimb.tX,currLimb.bX)+7){
       float slope;
       //if endpoints are aligned vertically
-      if (abs(currLimb.tX-currLimb.bX)==0){
+      if (currLimb.tX==currLimb.bX){
         currLimb.clicked=true;
       }
       //if they are not vertically,
       else{
         //calculate slope
         slope = (float(currLimb.tY)-currLimb.bY)/(currLimb.tX-currLimb.bX);
-        
+        print(slope,",",mouseY,",",(15/cos(atan(slope)))/2,",");
         //if y of mouse is between top and bottom of a limb
         //sin and arctan stuff is because line is not the same vertical height when tilted
-        if (mouseY>currLimb.bY-abs(mouseX-currLimb.bX)*slope-(15/cos(atan(slope)))/2 && mouseY<currLimb.bY-abs(mouseX-currLimb.bX)*slope+(15/cos(atan(slope)))/2){
-          println(abs(mouseX-currLimb.bX)*slope);
-          currLimb.clicked=true;
+        println(currLimb.bY+abs(mouseX-currLimb.bX)*slope);
+        
+        if (currLimb.bX<currLimb.tX){
+          if (mouseY>currLimb.bY+abs(mouseX-currLimb.bX)*slope-(15/cos(atan(slope)))/2 && mouseY<currLimb.bY+abs(mouseX-currLimb.bX)*slope+(15/cos(atan(slope)))/2){
+         
+            currLimb.clicked=true;
+          }
+        }
+        
+        else{
+          if (mouseY>currLimb.bY-abs(mouseX-currLimb.bX)*slope-(15/cos(atan(slope)))/2 && mouseY<currLimb.bY-abs(mouseX-currLimb.bX)*slope+(15/cos(atan(slope)))/2){
+         
+            currLimb.clicked=true;
+          }
         }
        
       }
