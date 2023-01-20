@@ -15,7 +15,7 @@ class Human{
     this.leftHip=new Joint("Hip", 300,300);
     this.leftFemur=new Limb ("Femur", 300,300,300,400);
     this.leftKnee = new Joint ("Knee", 300,400);
-    this.leftTibia = new Limb ("Tibia", 300,400,300,490);
+    this.leftTibia = new Limb ("Tibia", 300,400,400,490);
     allLimbs.add(leftFemur);
     allLimbs.add(leftTibia);
     allJoints.add(leftHip);
