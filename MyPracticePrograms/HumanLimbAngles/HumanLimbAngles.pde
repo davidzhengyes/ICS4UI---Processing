@@ -1,6 +1,7 @@
 Human bob = new Human("bob");
 boolean leftMousePressed;
 boolean jointSelected=false;
+
 PImage img;
 void setup(){
   size(600,600);

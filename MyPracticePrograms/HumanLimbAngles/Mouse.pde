@@ -48,13 +48,16 @@ void mousePressed() {
           if (mouseY>currLimb.bY+abs(mouseX-currLimb.bX)*slope-(15/cos(atan(slope)))/2 && mouseY<currLimb.bY+abs(mouseX-currLimb.bX)*slope+(15/cos(atan(slope)))/2){
          
             currLimb.clicked=true;
+            
+            break;
           }
         }
         
         else{
           if (mouseY>currLimb.bY-abs(mouseX-currLimb.bX)*slope-(15/cos(atan(slope)))/2 && mouseY<currLimb.bY-abs(mouseX-currLimb.bX)*slope+(15/cos(atan(slope)))/2){
-         
             currLimb.clicked=true;
+         
+            break;
           }
         }
        
@@ -75,5 +78,6 @@ void mouseReleased() {
   for (int i=0; i<bob.allLimbs.size(); i++) {
     bob.allLimbs.get(i).clicked=false;
   }
+  
   leftMousePressed=false;
 }
