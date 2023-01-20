@@ -23,7 +23,14 @@ void draw(){
   //rotate(PI/3);
   //image(img,0,100,900,520);
   popMatrix();
+  background(0);
   //updatePosFromAngles();  
+  bob.update();
   bob.display();
+  
+  stroke(255);
+  strokeWeight(5);
+  line(0,500,600,500);
+  line(0,505,600,505);
   
 }

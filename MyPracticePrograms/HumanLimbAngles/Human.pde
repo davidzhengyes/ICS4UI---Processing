@@ -46,6 +46,19 @@ class Human{
     }
   }
   
+  void update(){
+    //check which limb if any is clicked
+        
+    for (int i=0; i<this.allLimbs.size(); i++) {
+      Limb currLimb = this.allLimbs.get(i);
+      
+      if (currLimb.clicked){
+        currLimb.bX=mouseX;
+        currLimb.bY=mouseY;
+      }
+    }
+  }
+  
   
   
 }
