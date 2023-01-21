@@ -10,7 +10,7 @@ void setup(){
   strokeWeight(5);
   line(0,500,600,500);
   line(0,505,600,505);
-  
+  println(bob.leftFemur.topCoord.y);
   img = loadImage ("circle.jpg");
 }
 

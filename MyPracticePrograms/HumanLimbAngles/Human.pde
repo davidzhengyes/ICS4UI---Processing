@@ -55,6 +55,9 @@ class Human{
       if (currLimb.clicked){
         currLimb.bX=mouseX;
         currLimb.bY=mouseY;
+        
+        currLimb.bottomCoord.x=mouseX;
+        currLimb.bottomCoord.y=mouseY;
       }
     }
   }
