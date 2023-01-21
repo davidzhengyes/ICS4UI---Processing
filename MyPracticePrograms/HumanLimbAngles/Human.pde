@@ -30,7 +30,7 @@ class Human{
       Limb currLimb = allLimbs.get(i);
       strokeWeight(15);
       stroke(255);
-      line(currLimb.tX,currLimb.tY,currLimb.bX,currLimb.bY);
+      line(currLimb.topCoord.x,currLimb.topCoord.y,currLimb.bottomCoord.x,currLimb.bottomCoord.y);
     }
     
     for (int i=0; i<allJoints.size(); i++){
@@ -53,11 +53,21 @@ class Human{
       Limb currLimb = this.allLimbs.get(i);
       
       if (currLimb.clicked){
-        currLimb.bX=mouseX;
-        currLimb.bY=mouseY;
+        //currLimb.bX=mouseX;
+        //currLimb.bY=mouseY;
         
-        currLimb.bottomCoord.x=mouseX;
-        currLimb.bottomCoord.y=mouseY;
+        //maybe make another function to rotate limb later
+        PVector a = new PVector (this.leftTibia.topCoord.x,this.leftTibia.topCoord.y);
+        PVector b = new PVector (mouseX,mouseY);
+        b.sub(a);  
+        b.setMag(100);
+        a.add(b);
+        
+        println(a.x,a.y);
+       
+        
+        currLimb.bottomCoord.x=a.x;
+        currLimb.bottomCoord.y=a.y;
       }
     }
   }

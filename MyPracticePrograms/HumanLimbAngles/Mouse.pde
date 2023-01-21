@@ -30,23 +30,23 @@ void mousePressed() {
     Limb currLimb = bob.allLimbs.get(i);
     
     //first checks if the mouse click is between limb endpoints in x direction
-    if (mouseX>min(int(currLimb.topCoord.x),int(currLimb.bottomCoord.x))-7 && mouseX<max(int(currLimb.topCoord.x),int(currLimb.bottomCoord.x))+7){
+    if (mouseX>min(currLimb.topCoord.x,currLimb.bottomCoord.x)-7 && mouseX<max(currLimb.topCoord.x,currLimb.bottomCoord.x)+7){
       
       //if endpoints are aligned vertically
-      if (int(currLimb.topCoord.x)==int(currLimb.bottomCoord.x)){
+      if (currLimb.topCoord.x==currLimb.bottomCoord.x){
         currLimb.clicked=true;
       }
       //if they are not vertically,
       else{
         //calculate slope
-        currLimb.slope = (float(int(int(currLimb.topCoord.y)-int(currLimb.bottomCoord.y))))/(int(currLimb.topCoord.x)-int(currLimb.bottomCoord.x));
-        println(int(currLimb.topCoord.y));
+        currLimb.slope = (float(int(currLimb.topCoord.y-currLimb.bottomCoord.y)))/(currLimb.topCoord.x-currLimb.bottomCoord.x);
+       
         //if y of mouse is between top and bottom of a limb
         //sin and arctan stuff is because line is not the same vertical height when tilted
-         println(currLimb.slope);
+       
         
-        if (int(currLimb.bottomCoord.x)<int(currLimb.topCoord.x)){
-          if (mouseY>int(currLimb.bottomCoord.y)+abs(mouseX-int(int(currLimb.bottomCoord.x)))*currLimb.slope-(15/cos(atan(currLimb.slope)))/2 && mouseY<int(currLimb.bottomCoord.y)+abs(mouseX-int(currLimb.bottomCoord.x))*currLimb.slope+(15/cos(atan(currLimb.slope)))/2){
+        if (currLimb.bottomCoord.x<currLimb.topCoord.x){
+          if (mouseY>currLimb.bottomCoord.y+abs(mouseX-int(currLimb.bottomCoord.x))*currLimb.slope-(15/cos(atan(currLimb.slope)))/2 && mouseY<currLimb.bottomCoord.y+abs(mouseX-currLimb.bottomCoord.x)*currLimb.slope+(15/cos(atan(currLimb.slope)))/2){
          
             currLimb.clicked=true;
             
@@ -55,7 +55,7 @@ void mousePressed() {
         }
         
         else{
-          if (mouseY>int(currLimb.bottomCoord.y)-abs(mouseX-int(currLimb.bottomCoord.x))*currLimb.slope-(15/cos(atan(currLimb.slope)))/2 && mouseY<int(currLimb.bottomCoord.y)-abs(mouseX-int(currLimb.bottomCoord.x))*currLimb.slope+(15/cos(atan(currLimb.slope)))/2){
+          if (mouseY>currLimb.bottomCoord.y-abs(mouseX-currLimb.bottomCoord.x)*currLimb.slope-(15/cos(atan(currLimb.slope)))/2 && mouseY<currLimb.bottomCoord.y-abs(mouseX-currLimb.bottomCoord.x)*currLimb.slope+(15/cos(atan(currLimb.slope)))/2){
             currLimb.clicked=true;
          
             break;
