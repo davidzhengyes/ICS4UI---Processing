@@ -13,6 +13,7 @@ class Human{
     this.name=n;
     
     this.leftHip=new Joint("Hip", 300,300);
+    
     this.leftFemur=new Limb ("Femur", 300,300,300,400);
     this.leftKnee = new Joint ("Knee", 300,400);
     this.leftTibia = new Limb ("Tibia", 300,400,400,490);
@@ -57,17 +58,17 @@ class Human{
         //currLimb.bY=mouseY;
         
         //maybe make another function to rotate limb later
-        PVector a = new PVector (this.leftTibia.topCoord.x,this.leftTibia.topCoord.y);
-        PVector b = new PVector (mouseX,mouseY);
-        b.sub(a);  
-        b.setMag(100);
-        a.add(b);
+        //PVector a = new PVector (this.leftTibia.topCoord.x,this.leftTibia.topCoord.y);
+        //PVector b = new PVector (mouseX,mouseY);
+        //b.sub(a);  
+        //b.setMag(100);
+        //a.add(b);
         
-        println(a.x,a.y);
+        PVector rotatedCoords = findEOL(this.leftKnee);
        
         
-        currLimb.bottomCoord.x=a.x;
-        currLimb.bottomCoord.y=a.y;
+        currLimb.bottomCoord.x=rotatedCoords.x;
+        currLimb.bottomCoord.y=rotatedCoords.y;
       }
     }
   }

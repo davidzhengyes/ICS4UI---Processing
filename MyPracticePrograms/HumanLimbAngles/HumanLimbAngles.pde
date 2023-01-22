@@ -1,6 +1,7 @@
 Human bob = new Human("bob");
 boolean leftMousePressed;
 boolean jointSelected=false;
+Joint testJoint=new Joint ("test",200,200);
 
 PImage img;
 void setup(){
@@ -12,6 +13,8 @@ void setup(){
   line(0,505,600,505);
 
   img = loadImage ("circle.jpg");
+  println(bob.leftHip);
+  bob.leftFemur.superiorJoint=bob.leftHip;
 }
 
 
