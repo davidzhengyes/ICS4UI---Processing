@@ -44,9 +44,11 @@ void mousePressed() {
         //if y of mouse is between top and bottom of a limb
         //sin and arctan stuff is because line is not the same vertical height when tilted
        
-        
+        float adjustedLineHeight = (15/cos(atan(currLimb.slope)))/2;
+        float slopeTimesXDist=abs(mouseX-int(currLimb.bottomCoord.x))*currLimb.slope;
         if (currLimb.bottomCoord.x<currLimb.topCoord.x){
-          if (mouseY>currLimb.bottomCoord.y+abs(mouseX-int(currLimb.bottomCoord.x))*currLimb.slope-(15/cos(atan(currLimb.slope)))/2 && mouseY<currLimb.bottomCoord.y+abs(mouseX-currLimb.bottomCoord.x)*currLimb.slope+(15/cos(atan(currLimb.slope)))/2){
+          
+          if (mouseY>currLimb.bottomCoord.y+slopeTimesXDist-adjustedLineHeight && mouseY<currLimb.bottomCoord.y+slopeTimesXDist+adjustedLineHeight){
          
             currLimb.clicked=true;
             
@@ -55,7 +57,7 @@ void mousePressed() {
         }
         
         else{
-          if (mouseY>currLimb.bottomCoord.y-abs(mouseX-currLimb.bottomCoord.x)*currLimb.slope-(15/cos(atan(currLimb.slope)))/2 && mouseY<currLimb.bottomCoord.y-abs(mouseX-currLimb.bottomCoord.x)*currLimb.slope+(15/cos(atan(currLimb.slope)))/2){
+          if (mouseY>currLimb.bottomCoord.y-slopeTimesXDist-adjustedLineHeight && mouseY<currLimb.bottomCoord.y-slopeTimesXDist+adjustedLineHeight){
             currLimb.clicked=true;
          
             break;
