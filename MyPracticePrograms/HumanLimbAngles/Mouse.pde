@@ -1,3 +1,4 @@
+//add something so limb doesnt jump when joint is clicket//
 void mousePressed() {
   loop();
   leftMousePressed=true;
@@ -12,6 +13,7 @@ void mousePressed() {
         if (currJoint.locked) {
           Joint unlockedJoint = currJoint;
           currJoint.locked=false;
+          bob.selectedJoint=currJoint;
 
           for (int j=0; j<bob.allJoints.size(); j++) {
             if (bob.allJoints.get(j) != unlockedJoint && bob.allJoints.get(j).locked==false) {
@@ -21,6 +23,8 @@ void mousePressed() {
         } 
         else {
           currJoint.locked=true;
+          
+          bob.selectedJoint=null;
         }
       }
     }

@@ -3,7 +3,10 @@ class Human{
   Limb leftFemur;
   Joint leftKnee;
   Limb leftTibia;
+  Joint leftHeel;
+  Limb leftFoot;
   
+  Joint selectedJoint;
   ArrayList<Limb> allLimbs = new ArrayList<Limb>();
   ArrayList<Joint> allJoints = new ArrayList<Joint>();
   
@@ -17,10 +20,15 @@ class Human{
     this.leftFemur=new Limb ("Femur", 300,300,300,400);
     this.leftKnee = new Joint ("Knee", 300,400);
     this.leftTibia = new Limb ("Tibia", 300,400,400,490);
+    this.leftHeel=new Joint("Heel",400,490);
+    this.leftFoot=new Limb ("Foot",400,490,300,500);
+    
     allLimbs.add(leftFemur);
     allLimbs.add(leftTibia);
+    allLimbs.add(leftFoot);
     allJoints.add(leftHip);
     allJoints.add(leftKnee);
+    allJoints.add(leftHeel);
   }
   
   
@@ -54,17 +62,9 @@ class Human{
       Limb currLimb = this.allLimbs.get(i);
       
       if (currLimb.clicked){
-        //currLimb.bX=mouseX;
-        //currLimb.bY=mouseY;
         
-        //maybe make another function to rotate limb later
-        //PVector a = new PVector (this.leftTibia.topCoord.x,this.leftTibia.topCoord.y);
-        //PVector b = new PVector (mouseX,mouseY);
-        //b.sub(a);  
-        //b.setMag(100);
-        //a.add(b);
         
-        PVector rotatedCoords = findEOL(this.leftKnee);
+        PVector rotatedCoords = findEOL(bob.allJoints.get(bob.allLimbs.indexOf(currLimb))); //because each index of limb matches index of joint above
        
         
         currLimb.bottomCoord.x=rotatedCoords.x;
