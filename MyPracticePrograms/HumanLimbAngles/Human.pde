@@ -64,16 +64,23 @@ class Human{
       if (currLimb.clicked){
         
         PVector jointAndNewMouse = PVector.sub(new PVector(mouseX,mouseY),this.leftHip.coords);
+        float mouseAngle=PVector.angleBetween(jointAndNewMouse,jointAndOldMouse);
+        float newMouseAngle=PVector.angleBetween(new PVector(1,0),PVector.sub(new PVector(mouseX,mouseY),this.leftHip.coords));
         //need angle from limb to x axis then can do simple subtractions.
         
         float angle = PVector.angleBetween(new PVector(1,0),jointAndNewMouse);
-        //if in top two quadrants flip the angle to go the other way, angle between two vectors is alwasy <=180
+        
+      
+       
+        //if in top two quadrants flip the angle to go the other way, angle between two vectors is always <=180
         if (jointAndNewMouse.x<0 && jointAndNewMouse.y<0 || (jointAndNewMouse.x>0&&jointAndNewMouse.y<0)){
           angle*=-1;
+          mouseAngle*=-1;
           
         }
+         println(newMouseAngle-oldMouseAngle);
+        //oldangle - (oldangle-angle)
         
-        println(jointAndNewMouse.x, jointAndNewMouse.y);
         PVector rotatedCoords = findEOL(bob.leftHip,currLimb.bottomCoord,angle); //because each index of limb matches index of joint above
        
         
