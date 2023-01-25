@@ -64,7 +64,7 @@ class Human{
       if (currLimb.clicked){
         
         PVector jointAndNewMouse = PVector.sub(new PVector(mouseX,mouseY),this.leftHip.coords);
-      
+        //need angle from limb to x axis then can do simple subtractions.
         
         float angle = PVector.angleBetween(new PVector(1,0),jointAndNewMouse);
         //if in top two quadrants flip the angle to go the other way, angle between two vectors is alwasy <=180
