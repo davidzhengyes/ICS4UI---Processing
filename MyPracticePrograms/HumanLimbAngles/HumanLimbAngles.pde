@@ -3,9 +3,11 @@ boolean leftMousePressed;
 boolean jointSelected=false;
 Joint testJoint=new Joint ("test",200,200);
 boolean anyLimbClicked=false;
-float oldAngle=0;
+
 float oldMouseAngle=0;
 PVector jointAndOldMouse;
+
+int clickedJointIndex=0;
 
 PVector lastFrameMouse;
 PImage img;
@@ -36,19 +38,24 @@ void draw(){
   popMatrix();
   background(0);
   //updatePosFromAngles();  
+  
+  
+    
+  
+  
   bob.update();
   bob.updateJoints();
   bob.display();
-  if (anyLimbClicked){
-    lastFrameMouse=new PVector(mouseX,mouseY);
-  }
+  
+  jointAndOldMouse=PVector.sub(new PVector(mouseX,mouseY),bob.allJoints.get(clickedJointIndex).coords);
+  oldMouseAngle=PVector.angleBetween(new PVector(1,0),jointAndOldMouse);
+  println(clickedJointIndex);
   stroke(255);
   strokeWeight(5);
   line(0,500,600,500);
   line(0,505,600,505);
   //old mouse angle subtraction!
-  jointAndOldMouse=PVector.sub(new PVector(mouseX,mouseY),bob.leftHip.coords);
-  oldMouseAngle=PVector.angleBetween(new PVector(1,0),jointAndOldMouse);
-  oldAngle=PVector.angleBetween(new PVector(1,0),PVector.sub(bob.leftFemur.bottomCoord,bob.leftHip.coords));
+  
+  
   
 }

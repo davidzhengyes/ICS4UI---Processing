@@ -14,17 +14,19 @@ void mousePressed() {
         if (currJoint.locked) {
           Joint unlockedJoint = currJoint;
           currJoint.locked=false;
+          clickedJointIndex=i;
           bob.selectedJoint=currJoint;
 
           for (int j=0; j<bob.allJoints.size(); j++) {
             if (bob.allJoints.get(j) != unlockedJoint && bob.allJoints.get(j).locked==false) {
               bob.allJoints.get(j).locked=true;
+              clickedJointIndex=0;
             }
           }
         } 
         else {
           currJoint.locked=true;
-          
+          clickedJointIndex=0;
           bob.selectedJoint=null;
         }
       }

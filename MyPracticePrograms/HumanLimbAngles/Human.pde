@@ -21,7 +21,7 @@ class Human{
     this.leftKnee = new Joint ("Knee", 300,400);
     this.leftTibia = new Limb ("Tibia", 300,400,400,490);
     this.leftHeel=new Joint("Heel",400,490);
-    this.leftFoot=new Limb ("Foot",300,500,400,490);
+    this.leftFoot=new Limb ("Foot",400,490,300,500);
     
     allLimbs.add(leftFemur);
     allLimbs.add(leftTibia);
@@ -63,50 +63,53 @@ class Human{
       
       if (currLimb.clicked){
         
-        PVector jointAndNewMouse = PVector.sub(new PVector(mouseX,mouseY),this.leftHip.coords);
+        PVector jointAndNewMouse = PVector.sub(new PVector(mouseX,mouseY),allJoints.get(clickedJointIndex).coords);
         
         
-        float newMouseAngle=PVector.angleBetween(new PVector(1,0),PVector.sub(new PVector(mouseX,mouseY),this.leftHip.coords));
+        float newMouseAngle=PVector.angleBetween(new PVector(1,0),PVector.sub(new PVector(mouseX,mouseY),allJoints.get(clickedJointIndex).coords));
         //need angle from limb to x axis then can do simple subtractions.
         
-        float angle = PVector.angleBetween(new PVector(1,0),jointAndNewMouse);
+        
         
         float deltaAngle;
         //
-        PVector jointandLimb=PVector.sub(this.leftFemur.bottomCoord,this.leftHip.coords);
-        float betweenjointandaxis=PVector.angleBetween(new PVector(1,0),jointandLimb);
+ 
+       
        
         //if in top two quadrants flip the angle to go the other way, angle between two vectors is always <=180
         if (jointAndNewMouse.x<0 && jointAndNewMouse.y<0 || (jointAndNewMouse.x>0&&jointAndNewMouse.y<0)){
-          betweenjointandaxis*=-1;
-          angle*=-1;
+
           
+     
           deltaAngle=oldMouseAngle-newMouseAngle;
           
         }
         else{
           deltaAngle=newMouseAngle-oldMouseAngle;
         }
-         println(newMouseAngle,oldMouseAngle,deltaAngle,betweenjointandaxis);
+         //println(newMouseAngle,oldMouseAngle,deltaAngle);
         //oldangle - (oldangle-angle)
         
         for (Limb limb:allLimbs){
-          float angleToAxis=PVector.angleBetween(new PVector(1,0),PVector.sub(limb.bottomCoord,this.leftHip.coords));
-          float topAngleToAxis = PVector.angleBetween(new PVector(1,0),PVector.sub(limb.topCoord,this.leftHip.coords));
-          if (limb.bottomCoord.y<this.leftHip.coords.y){
-            angleToAxis*=-1;
-            topAngleToAxis*=-1;
-          }
-          if (limb==this.leftTibia){
-            println(topAngleToAxis);
-          }
-          PVector rotatedCoords = findEOL(bob.leftHip,limb.bottomCoord,angleToAxis+deltaAngle); //because each index of limb matches index of joint above
-          PVector rotatedCoords1 = findEOL (bob.leftHip,limb.topCoord,topAngleToAxis+deltaAngle);//topAngleToAxis+deltaAngle
          
-          
-          limb.bottomCoord.x=rotatedCoords.x;
-          limb.bottomCoord.y=rotatedCoords.y;
-          limb.topCoord.set(rotatedCoords1);
+          if (allLimbs.indexOf(limb)>=clickedJointIndex){
+            float angleToAxis=PVector.angleBetween(new PVector(1,0),PVector.sub(limb.bottomCoord,allJoints.get(clickedJointIndex).coords));
+            float topAngleToAxis = PVector.angleBetween(new PVector(1,0),PVector.sub(limb.topCoord,allJoints.get(clickedJointIndex).coords));
+            if (limb.bottomCoord.y<allJoints.get(clickedJointIndex).coords.y){
+              angleToAxis*=-1;
+              topAngleToAxis*=-1;
+            }
+            if (limb==this.leftTibia){
+              //println(topAngleToAxis);
+            }
+            PVector rotatedCoords = findEOL(allJoints.get(clickedJointIndex),limb.bottomCoord,angleToAxis+deltaAngle); //because each index of limb matches index of joint above
+            PVector rotatedCoords1 = findEOL (allJoints.get(clickedJointIndex),limb.topCoord,topAngleToAxis+deltaAngle);//topAngleToAxis+deltaAngle
+           
+            
+            limb.bottomCoord.x=rotatedCoords.x;
+            limb.bottomCoord.y=rotatedCoords.y;
+            limb.topCoord.set(rotatedCoords1);
+          }
         }
       }
     }
