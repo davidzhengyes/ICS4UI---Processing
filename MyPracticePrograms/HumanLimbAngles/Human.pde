@@ -21,7 +21,7 @@ class Human{
     this.leftKnee = new Joint ("Knee", 300,400);
     this.leftTibia = new Limb ("Tibia", 300,400,400,490);
     this.leftHeel=new Joint("Heel",400,490);
-    this.leftFoot=new Limb ("Foot",400,490,300,500);
+    this.leftFoot=new Limb ("Foot",300,500,400,490);
     
     allLimbs.add(leftFemur);
     allLimbs.add(leftTibia);
@@ -64,7 +64,7 @@ class Human{
       if (currLimb.clicked){
         
         PVector jointAndNewMouse = PVector.sub(new PVector(mouseX,mouseY),this.leftHip.coords);
-        float mouseAngle=PVector.angleBetween(jointAndNewMouse,jointAndOldMouse);
+        
         
         float newMouseAngle=PVector.angleBetween(new PVector(1,0),PVector.sub(new PVector(mouseX,mouseY),this.leftHip.coords));
         //need angle from limb to x axis then can do simple subtractions.
@@ -80,7 +80,7 @@ class Human{
         if (jointAndNewMouse.x<0 && jointAndNewMouse.y<0 || (jointAndNewMouse.x>0&&jointAndNewMouse.y<0)){
           betweenjointandaxis*=-1;
           angle*=-1;
-          mouseAngle*=-1;
+          
           deltaAngle=oldMouseAngle-newMouseAngle;
           
         }
@@ -92,22 +92,32 @@ class Human{
         
         for (Limb limb:allLimbs){
           float angleToAxis=PVector.angleBetween(new PVector(1,0),PVector.sub(limb.bottomCoord,this.leftHip.coords));
+          float topAngleToAxis = PVector.angleBetween(new PVector(1,0),PVector.sub(limb.topCoord,this.leftHip.coords));
           if (limb.bottomCoord.y<this.leftHip.coords.y){
             angleToAxis*=-1;
+            topAngleToAxis*=-1;
           }
-          if (limb==this.leftFemur){
-            println(angleToAxis);
+          if (limb==this.leftTibia){
+            println(topAngleToAxis);
           }
           PVector rotatedCoords = findEOL(bob.leftHip,limb.bottomCoord,angleToAxis+deltaAngle); //because each index of limb matches index of joint above
+          PVector rotatedCoords1 = findEOL (bob.leftHip,limb.topCoord,topAngleToAxis+deltaAngle);//topAngleToAxis+deltaAngle
          
           
           limb.bottomCoord.x=rotatedCoords.x;
           limb.bottomCoord.y=rotatedCoords.y;
+          limb.topCoord.set(rotatedCoords1);
         }
       }
     }
   }
   
+  void updateJoints(){
+    for (Joint j: allJoints){
+      j.coords=allLimbs.get(allJoints.indexOf(j)).topCoord;
+      
+    }
+  }
   
   
 }

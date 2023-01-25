@@ -37,6 +37,7 @@ void draw(){
   background(0);
   //updatePosFromAngles();  
   bob.update();
+  bob.updateJoints();
   bob.display();
   if (anyLimbClicked){
     lastFrameMouse=new PVector(mouseX,mouseY);
