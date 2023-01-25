@@ -91,7 +91,14 @@ class Human{
         //oldangle - (oldangle-angle)
         
         for (Limb limb:allLimbs){
-          PVector rotatedCoords = findEOL(bob.leftHip,limb.bottomCoord,angle+deltaAngle); //because each index of limb matches index of joint above
+          float angleToAxis=PVector.angleBetween(new PVector(1,0),PVector.sub(limb.bottomCoord,this.leftHip.coords));
+          if (limb.bottomCoord.y<this.leftHip.coords.y){
+            angleToAxis*=-1;
+          }
+          if (limb==this.leftFemur){
+            println(angleToAxis);
+          }
+          PVector rotatedCoords = findEOL(bob.leftHip,limb.bottomCoord,angleToAxis+deltaAngle); //because each index of limb matches index of joint above
          
           
           limb.bottomCoord.x=rotatedCoords.x;

@@ -6,6 +6,7 @@ class Limb{
   float slope;
   Joint superiorJoint;
   
+  
   Limb(String t,int topX,int topY,int bottomX,int bottomY){
     this.type=t;
     this.tX=topX;
