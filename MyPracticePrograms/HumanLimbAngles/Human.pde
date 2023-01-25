@@ -90,11 +90,13 @@ class Human{
          println(newMouseAngle,oldMouseAngle,deltaAngle,betweenjointandaxis);
         //oldangle - (oldangle-angle)
         
-        PVector rotatedCoords = findEOL(bob.leftHip,currLimb.bottomCoord,angle+deltaAngle); //because each index of limb matches index of joint above
-       
-        
-        currLimb.bottomCoord.x=rotatedCoords.x;
-        currLimb.bottomCoord.y=rotatedCoords.y;
+        for (Limb limb:allLimbs){
+          PVector rotatedCoords = findEOL(bob.leftHip,limb.bottomCoord,angle+deltaAngle); //because each index of limb matches index of joint above
+         
+          
+          limb.bottomCoord.x=rotatedCoords.x;
+          limb.bottomCoord.y=rotatedCoords.y;
+        }
       }
     }
   }
