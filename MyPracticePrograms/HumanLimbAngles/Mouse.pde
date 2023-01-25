@@ -20,7 +20,7 @@ void mousePressed() {
           for (int j=0; j<bob.allJoints.size(); j++) {
             if (bob.allJoints.get(j) != unlockedJoint && bob.allJoints.get(j).locked==false) {
               bob.allJoints.get(j).locked=true;
-              clickedJointIndex=0;
+              
             }
           }
         } 
