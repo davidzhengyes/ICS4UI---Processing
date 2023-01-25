@@ -51,7 +51,7 @@ class Human{
       else{
         stroke(0,255,0);
       }
-      point(currJoint.jointX,currJoint.jointY);
+      point(currJoint.coords.x,currJoint.coords.y);
     }
   }
   
@@ -63,8 +63,18 @@ class Human{
       
       if (currLimb.clicked){
         
+        PVector jointAndNewMouse = PVector.sub(new PVector(mouseX,mouseY),this.leftHip.coords);
+      
         
-        PVector rotatedCoords = findEOL(bob.allJoints.get(bob.allLimbs.indexOf(currLimb))); //because each index of limb matches index of joint above
+        float angle = PVector.angleBetween(new PVector(1,0),jointAndNewMouse);
+        //if in top two quadrants flip the angle to go the other way, angle between two vectors is alwasy <=180
+        if (jointAndNewMouse.x<0 && jointAndNewMouse.y<0 || (jointAndNewMouse.x>0&&jointAndNewMouse.y<0)){
+          angle*=-1;
+          
+        }
+        
+        println(jointAndNewMouse.x, jointAndNewMouse.y);
+        PVector rotatedCoords = findEOL(bob.leftHip,currLimb.bottomCoord,angle); //because each index of limb matches index of joint above
        
         
         currLimb.bottomCoord.x=rotatedCoords.x;

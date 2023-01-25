@@ -1,5 +1,6 @@
 //add something so limb doesnt jump when joint is clicket//
 void mousePressed() {
+  lastFrameMouse=new PVector(mouseX,mouseY);
   loop();
   leftMousePressed=true;
   jointSelected=false;
@@ -7,8 +8,8 @@ void mousePressed() {
   for (int i=0; i<bob.allJoints.size(); i++) {
     Joint currJoint = bob.allJoints.get(i);
 
-    if (mouseX > currJoint.jointX-7 && mouseX<currJoint.jointX+7) {
-      if (mouseY > currJoint.jointY-7 && mouseY<currJoint.jointY+7) {
+    if (mouseX > currJoint.coords.x-7 && mouseX<currJoint.coords.x+7) {
+      if (mouseY > currJoint.coords.y-7 && mouseY<currJoint.coords.y+7) {
         jointSelected=true;
         if (currJoint.locked) {
           Joint unlockedJoint = currJoint;
@@ -40,6 +41,7 @@ void mousePressed() {
         //if endpoints are aligned vertically
         if (currLimb.topCoord.x==currLimb.bottomCoord.x){
           currLimb.clicked=true;
+          anyLimbClicked=true;
         }
         //if they are not vertically,
         else{
@@ -56,7 +58,7 @@ void mousePressed() {
             if (mouseY>currLimb.bottomCoord.y+slopeTimesXDist-adjustedLineHeight && mouseY<currLimb.bottomCoord.y+slopeTimesXDist+adjustedLineHeight){
            
               currLimb.clicked=true;
-              
+              anyLimbClicked=true;
               break;
             }
           }
@@ -64,7 +66,7 @@ void mousePressed() {
           else{
             if (mouseY>currLimb.bottomCoord.y-slopeTimesXDist-adjustedLineHeight && mouseY<currLimb.bottomCoord.y-slopeTimesXDist+adjustedLineHeight){
               currLimb.clicked=true;
-           
+              anyLimbClicked=true;
               break;
             }
           }
@@ -84,6 +86,7 @@ void mouseReleased() {
   //  change joint status;
   //}
   //make all limbs unclicked
+  anyLimbClicked=false;
   for (int i=0; i<bob.allLimbs.size(); i++) {
     bob.allLimbs.get(i).clicked=false;
   }

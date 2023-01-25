@@ -16,19 +16,10 @@ class Limb{
     this.topCoord= new PVector(topX,topY);
     this.bottomCoord=new PVector(bottomX,bottomY);
     
-    this.assignOrder();
-    //somehow assign this automatically depending on type
-    //if (this.type.equals("Tibia")){
-    //  this.superiorJoint = bob.leftKnee;
-    //}
-    //else{
-    //  this.superiorJoint=bob.leftHip;
-    //}
+    
   }
   
-  void assignOrder(){
-    this.superiorJoint=testJoint;
-  }
+
   
   
 }
