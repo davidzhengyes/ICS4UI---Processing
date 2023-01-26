@@ -1,9 +1,12 @@
 import g4p_controls.*;
+PrintWriter pw;
 Human bob = new Human("bob");
 boolean leftMousePressed;
 boolean jointSelected=false;
 Joint testJoint=new Joint ("test",200,200);
 boolean anyLimbClicked=false;
+
+ArrayList<PVector> vectors = new ArrayList<PVector>();
 
 float oldMouseAngle=0;
 PVector jointAndOldMouse;
@@ -22,8 +25,10 @@ void setup(){
   line(0,505,600,505);
   //frameRate(1);
   img = loadImage ("circle.jpg");
-  println(bob.leftHip);
+  
   bob.leftFemur.superiorJoint=bob.leftHip;
+  
+  pw = createWriter("data.txt");
 }
 
 
@@ -51,7 +56,16 @@ void draw(){
   line(0,500,600,500);
   line(0,505,600,505);
   //old mouse angle subtraction!
-  
+  println(frameCount);
+  if (frameCount<=1000){
+    vectors.add(bob.leftFemur.bottomCoord);
+    pw.println(bob.leftFemur.bottomCoord);
+    
+  }
+  if (frameCount==1001){
+    
+    pw.close();
+  }
   
   
 }

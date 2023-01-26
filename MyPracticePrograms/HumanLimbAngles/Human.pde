@@ -90,7 +90,7 @@ class Human{
         }
          //println(newMouseAngle,oldMouseAngle,deltaAngle);
         //oldangle - (oldangle-angle)
-        println(deltaAngle);
+        //println(deltaAngle);
         for (Limb limb:allLimbs){
          
           if (allLimbs.indexOf(limb)>=clickedJointIndex){
