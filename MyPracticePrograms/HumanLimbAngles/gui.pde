@@ -47,9 +47,13 @@ public void button4_click1(GButton source, GEvent event) { //_CODE_:button4:7572
   println("button4 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:button4:757285:
 
-public void dropList1_click1(GDropList source, GEvent event) { //_CODE_:dropList1:903103:
-  println("dropList1 - GDropList >> GEvent." + event + " @ " + millis());
-} //_CODE_:dropList1:903103:
+public void button5_click1(GButton source, GEvent event) { //_CODE_:button5:544722:
+  println("button5 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button5:544722:
+
+public void button6_click1(GButton source, GEvent event) { //_CODE_:button6:994383:
+  println("button6 - GButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:button6:994383:
 
 
 
@@ -91,9 +95,12 @@ public void createGUI(){
   button4 = new GButton(window1, 17, 183, 80, 30);
   button4.setText("Record Foot");
   button4.addEventHandler(this, "button4_click1");
-  dropList1 = new GDropList(window1, 129, 213, 90, 80, 3, 10);
-  dropList1.setItems(loadStrings("list_903103"), 0);
-  dropList1.addEventHandler(this, "dropList1_click1");
+  button5 = new GButton(window1, 129, 250, 80, 30);
+  button5.setText("Demo");
+  button5.addEventHandler(this, "button5_click1");
+  button6 = new GButton(window1, 17, 246, 80, 30);
+  button6.setText("Play Record");
+  button6.addEventHandler(this, "button6_click1");
   window1.loop();
 }
 
@@ -107,4 +114,5 @@ GCustomSlider heel;
 GButton button2; 
 GButton button3; 
 GButton button4; 
-GDropList dropList1; 
+GButton button5; 
+GButton button6; 
