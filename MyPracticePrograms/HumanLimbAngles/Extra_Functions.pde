@@ -18,3 +18,13 @@ PVector findEOL(Joint j,PVector rotatingPoint,float angle ){
   return updated;
   
 }
+
+
+void reset(){
+  bob.allLimbs =  new ArrayList<Limb>();
+  bob.allJoints = new ArrayList<Joint>();
+  
+  bob=new Human ("bob");
+  println("aa");
+  
+}

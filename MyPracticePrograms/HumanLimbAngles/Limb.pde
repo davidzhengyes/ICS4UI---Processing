@@ -2,7 +2,7 @@ class Limb{
   int tX,tY,bX,bY;
   PVector topCoord,bottomCoord;
   String type;
-  boolean clicked;
+  boolean clicked=false;
   float slope;
   Joint superiorJoint;
   

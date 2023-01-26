@@ -1,3 +1,4 @@
+import g4p_controls.*;
 Human bob = new Human("bob");
 boolean leftMousePressed;
 boolean jointSelected=false;
@@ -12,6 +13,7 @@ int clickedJointIndex=0;
 PVector lastFrameMouse;
 PImage img;
 void setup(){
+  createGUI();
   size(600,600);
   background(0);
   stroke(255);
@@ -31,17 +33,11 @@ void setup(){
 
 void draw(){
   
-  
-  pushMatrix();
-  //rotate(PI/3);
-  //image(img,0,100,900,520);
-  popMatrix();
+
   background(0);
-  //updatePosFromAngles();  
   
   
-    
-  
+ 
   
   bob.update();
   bob.updateJoints();
@@ -49,7 +45,7 @@ void draw(){
   
   jointAndOldMouse=PVector.sub(new PVector(mouseX,mouseY),bob.allJoints.get(clickedJointIndex).coords);
   oldMouseAngle=PVector.angleBetween(new PVector(1,0),jointAndOldMouse);
-  println(clickedJointIndex);
+ 
   stroke(255);
   strokeWeight(5);
   line(0,500,600,500);

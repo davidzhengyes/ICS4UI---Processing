@@ -29,6 +29,7 @@ class Human{
     allJoints.add(leftHip);
     allJoints.add(leftKnee);
     allJoints.add(leftHeel);
+   
   }
   
   
@@ -89,7 +90,7 @@ class Human{
         }
          //println(newMouseAngle,oldMouseAngle,deltaAngle);
         //oldangle - (oldangle-angle)
-        
+        println(deltaAngle);
         for (Limb limb:allLimbs){
          
           if (allLimbs.indexOf(limb)>=clickedJointIndex){
