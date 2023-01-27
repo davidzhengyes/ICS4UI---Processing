@@ -47,9 +47,12 @@ public void button4_click1(GButton source, GEvent event) { //_CODE_:button4:7572
   println("button4 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:button4:757285:
 
-public void button5_click1(GButton source, GEvent event) { //_CODE_:button5:544722:
-  println("button5 - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:button5:544722:
+public void democlick(GButton source, GEvent event) { //_CODE_:demo:544722:
+  democlick=true;
+  
+  frameWhenDemoClick=frameCount;
+  
+} //_CODE_:demo:544722:
 
 public void button6_click1(GButton source, GEvent event) { //_CODE_:button6:994383:
   println("button6 - GButton >> GEvent." + event + " @ " + millis());
@@ -95,9 +98,9 @@ public void createGUI(){
   button4 = new GButton(window1, 17, 183, 80, 30);
   button4.setText("Record Foot");
   button4.addEventHandler(this, "button4_click1");
-  button5 = new GButton(window1, 129, 250, 80, 30);
-  button5.setText("Demo");
-  button5.addEventHandler(this, "button5_click1");
+  demo = new GButton(window1, 129, 250, 80, 30);
+  demo.setText("Demo");
+  demo.addEventHandler(this, "democlick");
   button6 = new GButton(window1, 17, 246, 80, 30);
   button6.setText("Play Record");
   button6.addEventHandler(this, "button6_click1");
@@ -114,5 +117,5 @@ GCustomSlider heel;
 GButton button2; 
 GButton button3; 
 GButton button4; 
-GButton button5; 
+GButton demo; 
 GButton button6; 

@@ -28,3 +28,34 @@ void reset(){
   println("aa");
   
 }
+
+
+void writeToFile(){
+  //they didn't let me squeeze into one print statement 
+    pw.print(bob.leftFemur.topCoord.x);
+    pw.print(",");
+    pw.print(bob.leftFemur.topCoord.y);
+    pw.print(",");
+    pw.print(bob.leftFemur.bottomCoord.x);
+    pw.print(",");
+    pw.print(bob.leftFemur.bottomCoord.y);
+    pw.print(",");
+    
+    pw.print(bob.leftTibia.topCoord.x);
+    pw.print(",");
+    pw.print(bob.leftTibia.topCoord.y);
+    pw.print(",");
+    pw.print(bob.leftTibia.bottomCoord.x);
+    pw.print(",");
+    pw.print(bob.leftTibia.bottomCoord.y);
+    pw.print(",");
+    
+    pw.print(bob.leftFoot.topCoord.x);
+    pw.print(",");
+    pw.print(bob.leftFoot.topCoord.y);
+    pw.print(",");
+    pw.print(bob.leftFoot.bottomCoord.x);
+    pw.print(",");
+    pw.println(bob.leftFoot.bottomCoord.y);
+   
+}

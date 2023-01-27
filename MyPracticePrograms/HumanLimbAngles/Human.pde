@@ -40,7 +40,17 @@ class Human{
       Limb currLimb = allLimbs.get(i);
       strokeWeight(15);
       stroke(255);
-      line(currLimb.topCoord.x,currLimb.topCoord.y,currLimb.bottomCoord.x,currLimb.bottomCoord.y);
+      
+      if (democlick==false){
+        line(currLimb.topCoord.x,currLimb.topCoord.y,currLimb.bottomCoord.x,currLimb.bottomCoord.y);
+      }
+      else{
+        String [] frame=demoData[frameCount-frameWhenDemoClick].split(",");
+        
+        println(demoData[1]);
+        line(int(frame[i*3]),int(frame[i*3+1]),int(frame[i*3+2]),int(frame[i*3+3]));
+        //asdf
+      }
     }
     
     for (int i=0; i<allJoints.size(); i++){
