@@ -94,5 +94,5 @@ void mouseReleased() {
   }
   
   leftMousePressed=false;
-  noLoop();
+  //noLoop();
 }

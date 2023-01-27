@@ -43,13 +43,18 @@ class Human{
       
       if (democlick==false){
         line(currLimb.topCoord.x,currLimb.topCoord.y,currLimb.bottomCoord.x,currLimb.bottomCoord.y);
+       
       }
-      else{
+      else if (frameCount<frameWhenDemoClick+demoData.length){
         String [] frame=demoData[frameCount-frameWhenDemoClick].split(",");
         
         println(demoData[1]);
         line(int(frame[i*4]),int(frame[i*4+1]),int(frame[i*4+2]),int(frame[i*4+3]));
         //asdf
+      }
+      else{
+        democlick=false;
+       
       }
     }
     
@@ -108,14 +113,18 @@ class Human{
             float topAngleToAxis = PVector.angleBetween(new PVector(1,0),PVector.sub(limb.topCoord,allJoints.get(clickedJointIndex).coords));
             if (limb.bottomCoord.y<allJoints.get(clickedJointIndex).coords.y){
               angleToAxis*=-1;
-              topAngleToAxis*=-1;
+              
             }
+            
+            if (limb.topCoord.y<allJoints.get(clickedJointIndex).coords.y){
+            topAngleToAxis*=-1;
+        }
             if (limb==this.leftTibia){
-              //println(topAngleToAxis);
+              println(topAngleToAxis);
             }
             PVector rotatedCoords = findEOL(allJoints.get(clickedJointIndex),limb.bottomCoord,angleToAxis+deltaAngle); //because each index of limb matches index of joint above
             PVector rotatedCoords1 = findEOL (allJoints.get(clickedJointIndex),limb.topCoord,topAngleToAxis+deltaAngle);//topAngleToAxis+deltaAngle
-           
+            
             
             limb.bottomCoord.x=rotatedCoords.x;
             limb.bottomCoord.y=rotatedCoords.y;
