@@ -48,7 +48,7 @@ class Human{
         String [] frame=demoData[frameCount-frameWhenDemoClick].split(",");
         
         println(demoData[1]);
-        line(int(frame[i*3]),int(frame[i*3+1]),int(frame[i*3+2]),int(frame[i*3+3]));
+        line(int(frame[i*4]),int(frame[i*4+1]),int(frame[i*4+2]),int(frame[i*4+3]));
         //asdf
       }
     }
