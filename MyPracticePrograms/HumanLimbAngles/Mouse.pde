@@ -11,6 +11,8 @@ void mousePressed() {
     if (mouseX > currJoint.coords.x-7 && mouseX<currJoint.coords.x+7) {
       if (mouseY > currJoint.coords.y-7 && mouseY<currJoint.coords.y+7) {
         jointSelected=true;
+        
+        //makes it so only one joint can be clicked, runs through all joints and unselects them if they are not the one being selected
         if (currJoint.locked) {
           Joint unlockedJoint = currJoint;
           currJoint.locked=false;
@@ -33,6 +35,7 @@ void mousePressed() {
     }
   }
   
+  //only if there are no joints currently being selected in this frame, to avoid movement when clicking a joint
   if (jointSelected==false){
     for (int i=0; i<bob.allLimbs.size(); i++) {
       Limb currLimb = bob.allLimbs.get(i);
@@ -66,6 +69,7 @@ void mousePressed() {
           }
           
           else{
+            //for the other case if slope is negative 
             if (mouseY>currLimb.bottomCoord.y-slopeTimesXDist-adjustedLineHeight && mouseY<currLimb.bottomCoord.y-slopeTimesXDist+adjustedLineHeight){
               currLimb.clicked=true;
               anyLimbClicked=true;
@@ -84,9 +88,7 @@ void mousePressed() {
 
 
 void mouseReleased() {
-  //if (jointSelected==true && mouse on joint){
-  //  change joint status;
-  //}
+ 
   //make all limbs unclicked
   anyLimbClicked=false;
   for (int i=0; i<bob.allLimbs.size(); i++) {
@@ -94,5 +96,4 @@ void mouseReleased() {
   }
   
   leftMousePressed=false;
-  //noLoop();
 }

@@ -33,7 +33,7 @@ class Human{
   }
   
   
-  
+  //shows everything on screen
   void display(){
     
     for (int i=0; i<allLimbs.size(); i++){
@@ -41,23 +41,34 @@ class Human{
       strokeWeight(15);
       stroke(255);
       
-      if (democlick==false){
+      //this whole chain of ifs determine what text file to read from, or to use values from moving limbs with mouse
+      if (democlick==false && userClick==false){
         line(currLimb.topCoord.x,currLimb.topCoord.y,currLimb.bottomCoord.x,currLimb.bottomCoord.y);
        
       }
-      else if (frameCount<frameWhenDemoClick+demoData.length){
+      else if (democlick && frameCount<frameWhenDemoClick+demoData.length){
         String [] frame=demoData[frameCount-frameWhenDemoClick].split(",");
+        //takes one row from txt file and splits into an array for positions
         
-        println(demoData[1]);
         line(int(frame[i*4]),int(frame[i*4+1]),int(frame[i*4+2]),int(frame[i*4+3]));
-        //asdf
+        //for each limb
+       
+      }
+      
+      
+      else if (userClick && recordingUser==false && frameCount<frameWhenUserClick+userDemo.length ){
+        String [] frame=userDemo[frameCount-frameWhenUserClick].split(",");
+      
+        line(int(frame[i*4]),int(frame[i*4+1]),int(frame[i*4+2]),int(frame[i*4+3]));
       }
       else{
         democlick=false;
+        userClick=false;
        
       }
     }
     
+    //displays joints
     for (int i=0; i<allJoints.size(); i++){
       Joint currJoint = allJoints.get(i);
       strokeWeight(15);
@@ -67,7 +78,12 @@ class Human{
       else{
         stroke(0,255,0);
       }
-      point(currJoint.coords.x,currJoint.coords.y);
+      if (democlick==true || userClick==true){
+        //if during a demo, do nothing
+      }
+      else{
+        point(currJoint.coords.x,currJoint.coords.y);
+      }
     }
   }
   
@@ -80,7 +96,7 @@ class Human{
       if (currLimb.clicked){
         
         PVector jointAndNewMouse = PVector.sub(new PVector(mouseX,mouseY),allJoints.get(clickedJointIndex).coords);
-        
+        //direction vector from mouse to the selected joint
         
         float newMouseAngle=PVector.angleBetween(new PVector(1,0),PVector.sub(new PVector(mouseX,mouseY),allJoints.get(clickedJointIndex).coords));
         //need angle from limb to x axis then can do simple subtractions.
@@ -95,33 +111,29 @@ class Human{
         //if in top two quadrants flip the angle to go the other way, angle between two vectors is always <=180
         if (jointAndNewMouse.x<0 && jointAndNewMouse.y<0 || (jointAndNewMouse.x>0&&jointAndNewMouse.y<0)){
 
-          
-     
           deltaAngle=oldMouseAngle-newMouseAngle;
           
         }
         else{
           deltaAngle=newMouseAngle-oldMouseAngle;
         }
-         //println(newMouseAngle,oldMouseAngle,deltaAngle);
-        //oldangle - (oldangle-angle)
-        //println(deltaAngle);
+        
         for (Limb limb:allLimbs){
          
           if (allLimbs.indexOf(limb)>=clickedJointIndex){
+            //finds angle to axis of direction vector of point if limb is below the joint
             float angleToAxis=PVector.angleBetween(new PVector(1,0),PVector.sub(limb.bottomCoord,allJoints.get(clickedJointIndex).coords));
             float topAngleToAxis = PVector.angleBetween(new PVector(1,0),PVector.sub(limb.topCoord,allJoints.get(clickedJointIndex).coords));
             if (limb.bottomCoord.y<allJoints.get(clickedJointIndex).coords.y){
               angleToAxis*=-1;
-              
+              //flips if point is above (smaller y value) than joint
             }
             
             if (limb.topCoord.y<allJoints.get(clickedJointIndex).coords.y){
-            topAngleToAxis*=-1;
-        }
-            if (limb==this.leftTibia){
-              println(topAngleToAxis);
+              topAngleToAxis*=-1;
             }
+            
+            //finds rotated coordinates
             PVector rotatedCoords = findEOL(allJoints.get(clickedJointIndex),limb.bottomCoord,angleToAxis+deltaAngle); //because each index of limb matches index of joint above
             PVector rotatedCoords1 = findEOL (allJoints.get(clickedJointIndex),limb.topCoord,topAngleToAxis+deltaAngle);//topAngleToAxis+deltaAngle
             
@@ -135,6 +147,7 @@ class Human{
     }
   }
   
+  //sets new joint pos
   void updateJoints(){
     for (Joint j: allJoints){
       j.coords=allLimbs.get(allJoints.indexOf(j)).topCoord;

@@ -6,9 +6,14 @@ boolean jointSelected=false;
 Joint testJoint=new Joint ("test",200,200);
 boolean anyLimbClicked=false;
 boolean democlick=false;
+boolean userClick=false;
 int frameWhenDemoClick;
+int frameWhenUserClick;
 String[] demoData;
+String[] userDemo;
+boolean limitAngles=false;
 
+boolean recordingUser=false;
 
 ArrayList<PVector> vectors = new ArrayList<PVector>();
 
@@ -21,7 +26,7 @@ PVector lastFrameMouse;
 PImage img;
 void setup(){
   demoData = loadStrings("data.txt");
-  println(demoData);
+  //loads from txt file, positions
   createGUI();
   size(600,600);
   background(0);
@@ -30,14 +35,10 @@ void setup(){
   line(0,500,600,500);
   line(0,505,600,505);
   //frameRate(1);
-  img = loadImage ("circle.jpg");
-  
+
   bob.leftFemur.superiorJoint=bob.leftHip;
   
-  //pw = createWriter("data.txt");
 }
-
-
 
 
 
@@ -46,10 +47,7 @@ void draw(){
   
 
   background(0);
-  
-  
- 
-  
+
   bob.update();
   bob.updateJoints();
   bob.display();
@@ -61,18 +59,10 @@ void draw(){
   strokeWeight(5);
   line(0,500,600,500);
   line(0,505,600,505);
-  //old mouse angle subtraction!
-  
-  //println(frameCount);
-  //if (frameCount<=1000){
-  //  writeToFile();
-    
-    
-  //}
-  //if (frameCount==1001){
-    
-  //  pw.close();
-  //}
-  
-  
+
+  if (recordingUser){
+    writeToFile();
+
+  }
+ 
 }

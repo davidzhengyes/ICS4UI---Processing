@@ -1,5 +1,5 @@
 
-
+//finds rotated point around a circle using position of a joint, the point wanting to be rotated and angle in radians
 PVector findEOL(Joint j,PVector rotatingPoint,float angle ){
   PVector a = new PVector (j.coords.x,j.coords.y);
   PVector b = PVector.sub(rotatingPoint,a);
@@ -19,19 +19,9 @@ PVector findEOL(Joint j,PVector rotatingPoint,float angle ){
   
 }
 
-
-void reset(){
-  bob.allLimbs =  new ArrayList<Limb>();
-  bob.allJoints = new ArrayList<Joint>();
-  
-  bob=new Human ("bob");
-  println("aa");
-  
-}
-
-
+//storing positions in a text file
 void writeToFile(){
-  //they didn't let me squeeze into one print statement 
+    // a for loop here would have too many conditions
     pw.print(bob.leftFemur.topCoord.x);
     pw.print(",");
     pw.print(bob.leftFemur.topCoord.y);
