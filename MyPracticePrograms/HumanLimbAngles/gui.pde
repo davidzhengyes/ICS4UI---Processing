@@ -77,8 +77,8 @@ public void createGUI(){
   button6 = new GButton(window1, 125, 21, 80, 30);
   button6.setText("Play Record");
   button6.addEventHandler(this, "button6_click1");
-  textarea1 = new GTextArea(window1, 25, 140, 182, 69, G4P.SCROLLBARS_NONE);
-  textarea1.setText("Click limbs to move, use the top-left button to start and stop a recording, and demo for an example.");
+  textarea1 = new GTextArea(window1, 25, 140, 182, 82, G4P.SCROLLBARS_NONE);
+  textarea1.setText("Click limbs to move, and joints to unlock them, use the top-left button to start and stop a recording, and demo for an example.");
   textarea1.setOpaque(true);
   textarea1.addEventHandler(this, "textarea1_change1");
   window1.loop();
